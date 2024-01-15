@@ -2945,7 +2945,8 @@
     <Content Include="Views\Galeri\Index.cshtml" />
     <Content Include="Views\UrunDetay\Index.cshtml" />
     <Content Include="Views\Istatistik\BasitTablolar.cshtml" />
-    <Content Include="Views\Istatistik\Partial1.cshtml" />
+    <Content Include="Views\Istatistik\PersonelDepartmanPartial.cshtml" />
+    <Content Include="Views\Istatistik\CarilerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />

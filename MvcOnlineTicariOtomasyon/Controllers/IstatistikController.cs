@@ -61,7 +61,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             return View(numofCaribySehir);
         }
 
-        public PartialViewResult Partial1()
+        public PartialViewResult PersonelDepartmanPartial()
         {
             var numofPersonelbyDepartman = (from x in context.Personels
                                             group x by x.DepartmanId into g
@@ -71,6 +71,12 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                                                 Sayi = g.Count(),
                                             }).ToList();
             return PartialView(numofPersonelbyDepartman);
+        }
+
+        public PartialViewResult CarilerPartial()
+        {
+            var cariler = context.Cariler.Where(x => x.Durum == true).ToList();
+            return PartialView(cariler);
         }
     }
 }
