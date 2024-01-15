@@ -2950,6 +2950,7 @@
     <Content Include="Views\Istatistik\CarilerPartial.cshtml" />
     <Content Include="Views\Istatistik\UrunlerPartial.cshtml" />
     <Content Include="Views\Istatistik\UrunMarkaPartial.cshtml" />
+    <Content Include="Views\Personel\PersonelListe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />
