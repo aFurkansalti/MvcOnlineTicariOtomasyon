@@ -160,7 +160,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
-    <Compile Include="Models\Siniflar\DetayModelClass.cs" />
+    <Compile Include="Models\Siniflar\Group_By\SinifGroupUrunbyMarka.cs" />
+    <Compile Include="Models\Siniflar\Model_Classes\DetayModelClass.cs" />
     <Compile Include="Models\Siniflar\Context.cs" />
     <Compile Include="Models\Siniflar\Departman.cs" />
     <Compile Include="Models\Siniflar\Detay.cs" />
@@ -170,8 +171,8 @@
     <Compile Include="Models\Siniflar\Kategori.cs" />
     <Compile Include="Models\Siniflar\Personel.cs" />
     <Compile Include="Models\Siniflar\SatisHareket.cs" />
-    <Compile Include="Models\Siniflar\SinifGroupPersonelbyDepartman.cs" />
-    <Compile Include="Models\Siniflar\SinifGroupCaribyCarisehir.cs" />
+    <Compile Include="Models\Siniflar\Group_By\SinifGroupPersonelbyDepartman.cs" />
+    <Compile Include="Models\Siniflar\Group_By\SinifGroupCaribyCarisehir.cs" />
     <Compile Include="Models\Siniflar\Urun.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2947,6 +2948,8 @@
     <Content Include="Views\Istatistik\BasitTablolar.cshtml" />
     <Content Include="Views\Istatistik\PersonelDepartmanPartial.cshtml" />
     <Content Include="Views\Istatistik\CarilerPartial.cshtml" />
+    <Content Include="Views\Istatistik\UrunlerPartial.cshtml" />
+    <Content Include="Views\Istatistik\UrunMarkaPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />

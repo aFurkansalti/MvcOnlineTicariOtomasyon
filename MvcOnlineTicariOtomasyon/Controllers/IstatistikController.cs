@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using MvcOnlineTicariOtomasyon.Models.Siniflar.Group_By;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -64,11 +65,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public PartialViewResult PersonelDepartmanPartial()
         {
             var numofPersonelbyDepartman = (from x in context.Personels
-                                            group x by x.DepartmanId into g
+                                            group x by x.Departman.DepartmanAd into g
                                             select new SinifGroupPersonelbyDepartman
                                             {
                                                 Departman = g.Key,
-                                                Sayi = g.Count(),
+                                                Sayi = g.Count()
                                             }).ToList();
             return PartialView(numofPersonelbyDepartman);
         }
@@ -77,6 +78,24 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
             var cariler = context.Cariler.Where(x => x.Durum == true).ToList();
             return PartialView(cariler);
+        }
+
+        public PartialViewResult UrunlerPartial()
+        {
+            var urunler = context.Uruns.Where(x => x.Durum == true).ToList();
+            return PartialView(urunler);
+        }
+
+        public PartialViewResult UrunMarkaPartial()
+        {
+            var numofUrunbyMarka = (from x in context.Uruns
+                                    group x by x.Marka into g
+                                    select new SinifGroupUrunbyMarka
+                                    {
+                                        Marka = g.Key,
+                                        Sayi = g.Count()
+                                    }).ToList();
+            return PartialView(numofUrunbyMarka);
         }
     }
 }

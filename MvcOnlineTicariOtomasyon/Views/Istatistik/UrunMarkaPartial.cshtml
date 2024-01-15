@@ -1,18 +1,18 @@
 ﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar.Group_By
 
-@model List<SinifGroupPersonelbyDepartman>
+@model List<SinifGroupUrunbyMarka>
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Departman Personel Sayıları</h3>
+        <h3 class="card-title">Markalara Göre Ürün Sayıları</h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body p-0">
-        <table class="table table-sm">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Departman</th>
+                    <th>Marka</th>
                     <th>Progress Bar</th>
                     <th style="width: 40px">Adet</th>
                 </tr>
@@ -22,10 +22,10 @@
                 @foreach (var item in Model)
                 {
                     num++;
-                    string progressBar = Convert.ToString(item.Sayi * 10) + "%";
+                    string progressBar = Convert.ToString(item.Sayi * 10) + "%";   
                     <tr>
                         <td>@num.</td>
-                        <td>@item.Departman</td>
+                        <td>@item.Marka</td>
 
                         @switch (item.Sayi)
                         {

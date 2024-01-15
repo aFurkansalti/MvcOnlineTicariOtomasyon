@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using MvcOnlineTicariOtomasyon.Models.Siniflar.Model_Classes;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {

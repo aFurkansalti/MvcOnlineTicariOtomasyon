@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MvcOnlineTicariOtomasyon.Models.Siniflar
+namespace MvcOnlineTicariOtomasyon.Models.Siniflar.Model_Classes
 {
     public class DetayModelClass
     {
