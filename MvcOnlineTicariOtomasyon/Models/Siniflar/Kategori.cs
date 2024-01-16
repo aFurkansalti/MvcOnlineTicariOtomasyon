@@ -10,8 +10,10 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
     public class Kategori
     {
         [Key]
+        [Display(Name = "Kategori")]
         public int KategoriId { get; set; }
 
+        [Display(Name = "Kategori Adı")]
         [Column(TypeName = "varchar")]
         [StringLength(30)]
         public string KategoriAd { get; set; }

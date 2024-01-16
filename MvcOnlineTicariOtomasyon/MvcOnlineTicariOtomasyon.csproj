@@ -138,6 +138,7 @@
     <Compile Include="Controllers\SatisController.cs" />
     <Compile Include="Controllers\UrunController.cs" />
     <Compile Include="Controllers\UrunDetayController.cs" />
+    <Compile Include="Controllers\YapilacakController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -157,6 +158,10 @@
     <Compile Include="Migrations\202401051423332_change_added_satis.designer.cs">
       <DependentUpon>202401051423332_change_added_satis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401161222036_adds_displayName.cs" />
+    <Compile Include="Migrations\202401161222036_adds_displayName.designer.cs">
+      <DependentUpon>202401161222036_adds_displayName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
@@ -174,6 +179,7 @@
     <Compile Include="Models\Siniflar\Group_By\SinifGroupPersonelbyDepartman.cs" />
     <Compile Include="Models\Siniflar\Group_By\SinifGroupCaribyCarisehir.cs" />
     <Compile Include="Models\Siniflar\Urun.cs" />
+    <Compile Include="Models\Siniflar\Yapilacak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2951,6 +2957,7 @@
     <Content Include="Views\Istatistik\UrunlerPartial.cshtml" />
     <Content Include="Views\Istatistik\UrunMarkaPartial.cshtml" />
     <Content Include="Views\Personel\PersonelListe.cshtml" />
+    <Content Include="Views\Yapilacak\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />
@@ -2978,6 +2985,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401051423332_change_added_satis.resx">
       <DependentUpon>202401051423332_change_added_satis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401161222036_adds_displayName.resx">
+      <DependentUpon>202401161222036_adds_displayName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

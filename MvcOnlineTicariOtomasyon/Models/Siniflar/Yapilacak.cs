@@ -7,16 +7,17 @@ using System.Web;
 
 namespace MvcOnlineTicariOtomasyon.Models.Siniflar
 {
-    public class Gider
+    public class Yapilacak
     {
         [Key]
-        public int GiderId { get; set; }
+        public int YapilacakId { get; set; }
 
-        [Display(Name = "Açıklama")]
-        [Column(TypeName = "varchar")]
+        [Display(Name = "Başlık")]
+        [Column(TypeName = "Varchar")]
         [StringLength(100)]
-        public string Aciklama { get; set; }
-        public DateTime Tarih { get; set; }
-        public decimal Tutar { get; set; }
+        public string Baslik { get; set; }
+
+        [Column(TypeName = "bit")]
+        public bool Durum { get; set; }
     }
 }

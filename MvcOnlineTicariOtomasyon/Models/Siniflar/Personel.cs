@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,14 +13,17 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int PersonelId { get; set; }
 
+        [Display(Name = "Personel Adı")]
         [Column(TypeName = "varchar")]
         [StringLength(30)]
         public string PersonelAd { get; set; }
 
+        [Display(Name = "Personel Soyadı")]
         [Column(TypeName = "varchar")]
         [StringLength(30)]
         public string PersonelSoyad { get; set; }
 
+        [Display(Name = "Personel Görsel")]
         [Column(TypeName = "varchar")]
         [StringLength(250)]
         public string PersonelGorsel { get; set; }

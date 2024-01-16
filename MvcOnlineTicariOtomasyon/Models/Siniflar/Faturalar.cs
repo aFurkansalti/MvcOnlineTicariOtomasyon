@@ -12,15 +12,18 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int FaturaId { get; set; }
 
+        [Display(Name = "Fatura Seri No")]
         [Column(TypeName = "char")]
         [StringLength(1)]
         public string FaturaSeriNo { get; set; }
 
+        [Display(Name = "Fatura Sıra No")]
         [Column(TypeName = "varchar")]
         [StringLength(6)]
         public string FaturaSiraNo { get; set; }
         public DateTime Tarih { get; set; }
 
+        [Display(Name = "Vergi Dairesi")]
         [Column(TypeName = "varchar")]
         [StringLength(60)]
         public string VergiDairesi { get; set; }
@@ -29,10 +32,12 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [StringLength(5)]
         public string Saat { get; set; }
 
+        [Display(Name = "Teslim Eden")]
         [Column(TypeName = "varchar")]
         [StringLength(30)]
         public string TeslimEden { get; set; }
 
+        [Display(Name = "Teslim Alan")]
         [Column(TypeName = "varchar")]
         [StringLength(30)]
         public string TeslimAalan { get; set; }

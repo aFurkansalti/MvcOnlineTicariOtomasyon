@@ -16,6 +16,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         public DateTime Tarih { get; set; }
         public int Adet { get; set; }
         public decimal Fiyat { get; set; }
+
+        [Display(Name = "Toplam Tutar")]
         public decimal ToplamTutar { get; set; }
 
         public int UrunId { get; set; }

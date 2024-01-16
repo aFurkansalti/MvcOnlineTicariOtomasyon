@@ -12,10 +12,12 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int AdminId { get; set; }
 
+        [Display(Name = "Kullanıcı Adı")]
         [Column(TypeName = "Varchar")]
         [StringLength(10)]
         public string KullaniciAd { get; set; }
 
+        [Display(Name = "Şifre")]
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string Sifre { get; set; }

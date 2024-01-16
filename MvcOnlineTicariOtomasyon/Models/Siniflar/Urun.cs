@@ -12,6 +12,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int UrunId { get; set; }
 
+        [Display(Name = "Ürün Adı")]
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string UrunAd { get; set; }
@@ -20,10 +21,15 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [StringLength(30)]
         public string Marka { get; set; }
         public short Stok { get; set; }
+
+        [Display(Name = "Alış Fiyatı")]
         public decimal AlisFiyat { get; set; }
+
+        [Display(Name = "Satış Fiyatı")]
         public decimal SatisFiyat { get; set; }
         public bool Durum { get; set; }
 
+        [Display(Name = "Ürün Görseli")]
         [Column(TypeName = "varchar")]
         [StringLength(250)]
         public string UrunGorsel { get; set; }
