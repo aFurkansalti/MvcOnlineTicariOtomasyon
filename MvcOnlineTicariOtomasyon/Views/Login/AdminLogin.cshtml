@@ -1,0 +1,18 @@
+﻿<div class="login-form login-form-left">
+    <div class="agile-row">
+        <h3 style="display: inline">Personel Formu Girişi</h3>
+        <span class="fa fa-lock"></span>
+        <div><br /><br /></div>
+        <div class="login-agileits-top">
+            @using (Html.BeginForm("AdminLogin", "Login", FormMethod.Post))
+            {
+                <input type="text" class="name" name="KullaniciAd" Placeholder="Kullanıcı Adı" required="" />
+                <input type="password" class="password" name="Sifre" Placeholder="Şifre" required="" />
+                <input type="submit" value="Giriş Yap">
+            }
+        </div>
+        <div class="login-agileits-bottom">
+            <h6><a href="#">Şifremi Unuttum</a></h6>
+        </div>
+    </div>
+</div>
