@@ -14,7 +14,6 @@
 </ol>
 <table class="table table-bordered">
     <tr>
-        <th>Satış Id</th>
         <th>Ürün</th>
         <th>Cari</th>
         <th>Fiyat</th>
@@ -26,10 +25,9 @@
     @foreach (var satis in Model)
     {
         <tr>
-            <td>@satis.SatisId</td>
             <td>@satis.Urun.UrunAd</td>
             <td>@satis.Cariler.CariAd @satis.Cariler.CariSoyad</td>
-            <td>@satis.Fiyat</td>
+            <td>@satis.Fiyat ₺</td>
             <td>@satis.Adet</td>
             <td>@satis.ToplamTutar</td>
             <td>@satis.Tarih</td>

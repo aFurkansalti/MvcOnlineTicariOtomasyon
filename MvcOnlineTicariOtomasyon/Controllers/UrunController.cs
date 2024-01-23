@@ -1,4 +1,5 @@
-﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+﻿using MvcOnlineTicariOtomasyon.Migrations;
+using MvcOnlineTicariOtomasyon.Models.Siniflar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,17 @@ namespace MvcOnlineTicariOtomasyon.Controllers
     {
         // GET: Urun
         Context context = new Context();
-        public ActionResult Index()
+        public ActionResult Index(string prm_urunAd)
         {
-            var urunler = context.Uruns.Where(x => x.Durum == true).ToList();
-            return View(urunler);
+            // context.Uruns.Where(x => x.Durum == true).ToList()
+            var urunler = from x in context.Uruns select x;
+            if (!string.IsNullOrEmpty(prm_urunAd))
+            {
+                urunler = urunler.Where(urun => urun.UrunAd.Contains(prm_urunAd) && urun.Durum == true);
+            } else {
+                urunler = urunler.Where(urun => urun.Durum == true);
+            }
+            return View(urunler.ToList());
         }
 
         [HttpGet]

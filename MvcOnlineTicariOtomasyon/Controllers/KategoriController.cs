@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
     public class KategoriController : Controller
     {
         // GET: Kategori
-        public ActionResult Index()
+        public ActionResult Index(int sayfa = 1)
         {
             using (Context context = new Context())
             {
-                var degerler = context.Kategoris.ToList();
+                var degerler = context.Kategoris.ToList().ToPagedList(sayfa, 4);
                 return View(degerler);
             }
         }

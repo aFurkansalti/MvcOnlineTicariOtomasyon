@@ -5,10 +5,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <br />
+
+@using (Html.BeginForm("Index", "Urun", FormMethod.Get))
+{
+    <p>
+        Ürün Adı: @Html.TextBox("prm_urunAd")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
 <table class="table table-bordered">
     <tr>
-        <th>ID</th>
         <th>Ürün Adı</th>
         <th>Marka</th>
         <th>Stok</th>
@@ -23,12 +32,11 @@
     @foreach (var urun in Model)
     {
         <tr>
-            <td>@urun.UrunId</td>
             <td>@urun.UrunAd</td>
             <td>@urun.Marka</td>
             <td>@urun.Stok</td>
-            <td>@urun.AlisFiyat</td>
-            <td>@urun.SatisFiyat</td>
+            <td>@urun.AlisFiyat ₺</td>
+            <td>@urun.SatisFiyat ₺</td>
             <td>@urun.Durum</td>
             <td>@urun.Kategori.KategoriAd</td>
             <td><img src="@urun.UrunGorsel" width="150" height="100"></td>
