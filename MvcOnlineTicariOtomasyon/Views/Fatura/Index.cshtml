@@ -7,9 +7,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<table class="table table-condensed">
+<table class="table table-bordered mt-4">
     <tr>
-        <th>Fatura Id</th>
         <th>Fatura Seri No</th>
         <th>Fatura Sıra No</th>
         <th>Tarih</th>
@@ -20,14 +19,15 @@
         <th>Toplam</th>
         <th>Güncelle</th>
         <th>Detaylar</th>
+        <th>Popup Liste</th>
+        <th>Yeni Kalem</th>
     </tr>
     @foreach (var fatura in Model)
     {
         <tr>
-            <td>@fatura.FaturaId</td>
             <td>@fatura.FaturaSeriNo</td>
             <td>@fatura.FaturaSiraNo</td>
-            <td>@fatura.Tarih</td>
+            <td>@Convert.ToDateTime(fatura.Tarih).ToString("dd/MM/yyyy")</td>
             <td>@fatura.VergiDairesi</td>
             <td>@fatura.Saat</td>
             <td>@fatura.TeslimEden</td>
@@ -35,7 +35,91 @@
             <td>@fatura.Toplam</td>
             <td><a href="/Fatura/FaturaGetir/@fatura.FaturaId" class="btn btn-warning">Güncelle</a></td>
             <td><a href="/Fatura/FaturaDetay/@fatura.FaturaId" class="btn btn-default" style="background-color: aquamarine;">Detaylar</a></td>
+            <td><a href="/Fatura/Index/@fatura.FaturaId" class="btn btn-default" style="background-color: darkgoldenrod;" data-toggle="modal" data-target="#Modal2">Kalemler</a></td>
+            @*<td><button type="button" class="btn btn-default" style="background-color: darkgoldenrod;" data-toggle="modal" data-target="#Modal2">Kalemler</button></td>*@
+            <td><a href="/Fatura/FaturaDetay/@fatura.FaturaId" class="btn btn-default" style="background-color: chartreuse;">Kalem+</a></td>
         </tr>
     }
 </table>
-<a href="/Fatura/FaturaEkle/" class="btn btn-info">Yeni Fatura Girişi</a> 
+<a href="/Fatura/FaturaEkle/" class="btn btn-info">Yeni Fatura Girişi</a>
+<br />
+<br />
+<button type="button" class="btn btn-default" style="background-color: brown; color: white;" data-toggle="modal" data-target="#Modal1">Popup Penceresi</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Popup Liste</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Fatura Seri No</th>
+                        <th>Fatura Sıra No</th>
+                        <th>Tutar</th>
+                    </tr>
+                    @foreach (var fatura in Model)
+                    {
+                        <tr>
+                            <td>@fatura.FaturaSeriNo</td>
+                            <td>@fatura.FaturaSiraNo</td>
+                            <td>@fatura.Toplam</td>
+                        </tr>
+                    }
+                </table>
+                <div class="text-right">
+                    <!-- Yeni eklenen div -->
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="Modal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Faturaya Ait Kalemler</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Açıklama</th>
+                        <th>Miktar</th>
+                        <th>Birim Fiyat</th>
+                        <th>Tutar</th>
+                    </tr>
+                    @foreach (var fatura in Model)
+                    {
+                        foreach (var faturaKalem in fatura.FaturaKalems)
+                        {
+                            if (faturaKalem.FaturaId == ViewBag.id)
+                            {
+                                <tr>
+                                    <td>@faturaKalem.Aciklama</td>
+                                    <td>@faturaKalem.Miktar</td>
+                                    <td>@faturaKalem.BirimFiyat</td>
+                                    <td>@faturaKalem.Tutar</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(faturaId) {
+        // Modal açılmadan önce yapılması gereken işlemleri burada gerçekleştirebilirsiniz.
+
+        // Örneğin, modal içerisindeki bir input alanına değeri atayabilirsiniz.
+        document.getElementById('modalInput').value = faturaId;
+
+        // Modal'ı açabilirsiniz.
+        $('#Modal2').modal('show');
+    }
+</script>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using MvcOnlineTicariOtomasyon.Models.Siniflar.Model_Classes;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -15,6 +16,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public ActionResult Index()
         {
             var degerler = context.Faturalars.ToList();
+
             return View(degerler);
         }
 
@@ -28,7 +30,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult FaturaEkle(Faturalar fatura)
         {
-            context.Faturalars.Add(fatura); 
+            context.Faturalars.Add(fatura);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -49,7 +51,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             fatura_ctx.VergiDairesi = fatura_prm.VergiDairesi;
             fatura_ctx.Saat = fatura_prm.Saat;
             fatura_ctx.TeslimEden = fatura_prm.TeslimEden;
-            fatura_ctx.TeslimAalan = fatura_prm .TeslimAalan;
+            fatura_ctx.TeslimAalan = fatura_prm.TeslimAalan;
             context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -69,6 +71,21 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             return View(degerler);
         }
 
+        public ActionResult FaturaDetayPopUpPartial(int id)
+        {
+            var degerler = context.FaturaKalems.Where(x => x.FaturaId == id).ToList();
+
+            var faturaSeriNo = context.Faturalars.Where(x => x.FaturaId == id).Select(x => x.FaturaSeriNo).FirstOrDefault();
+            ViewBag.faturaSeriNo = faturaSeriNo;
+
+            var faturaSiraNo = context.Faturalars.Where(x => x.FaturaId == id).Select(x => x.FaturaSiraNo).FirstOrDefault();
+            ViewBag.faturaSiraNo = faturaSiraNo;
+
+            ViewBag.faturaId = id;
+
+            return PartialView(degerler);
+        }
+
         [HttpGet]
         public ActionResult YeniKalem(int id)
         {
@@ -83,7 +100,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
             context.FaturaKalems.Add(faturaKalem);
             context.SaveChanges();
-            return RedirectToAction("Index");    
+            return RedirectToAction("Index");
         }
 
         private void DropdownListTeslim()

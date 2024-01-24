@@ -1,0 +1,21 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
+
+@model List<FaturaKalem>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Açıklama</th>
+        <th>Miktar</th>
+        <th>Birim Fiyat</th>
+        <th>Tutar</th>
+    </tr>
+    @foreach (var fatura in Model)
+    {
+        <tr>
+            <td>@fatura.Aciklama</td>
+            <td>@fatura.Miktar</td>
+            <td>@fatura.BirimFiyat</td>
+            <td>@fatura.Tutar</td>
+        </tr>
+    }
+</table>
