@@ -45,7 +45,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             DateTime bugun = DateTime.Today;
             var bugunSatis = context.SatisHarekets.Count(x => x.Tarih == bugun).ToString();
             ViewBag.d15 = bugunSatis;
-            var bugunSatisTutar = context.SatisHarekets.Where(x => x.Tarih == bugun) == null ? context.SatisHarekets.Where(x => x.Tarih == bugun).Sum(y => y.ToplamTutar).ToString() : "0";
+            var bugunSatisTutar = context.SatisHarekets.Where(x => x.Tarih == bugun) != null ? context.SatisHarekets.Where(x => x.Tarih == bugun).Sum(y => y.ToplamTutar * y.Adet).ToString() : "0";
             ViewBag.d16 = bugunSatisTutar;
             return View();
         }

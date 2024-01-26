@@ -1,0 +1,47 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.SatisHareket
+
+@{
+    ViewBag.Title = "SatisYap";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>SatisYap</h2>
+<br />
+<form class="form-group" accept-charset="UTF-8" method="post">
+    @Html.LabelFor(x => x.UrunId)
+    <input type="text" name="UrunId" value="@ViewBag.urunId" class="form-control" readonly />
+    <br />
+    @Html.LabelFor(x => x.PersonelId)
+    @Html.DropDownListFor(x => x.PersonelId, (List<SelectListItem>)ViewBag.personellerSatis, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.CariId)
+    @Html.TextBoxFor(x => x.CariId, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Adet)
+    <input type="number" id="inp_adet" class="form-control" name="Adet" onkeyup="sum();" max="30" min="0" placeholder="Adet giriniz!" />
+    @*@Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })*@
+    <br />
+    @Html.LabelFor(x => x.Fiyat)
+    <input type="text" id="inp_fiyat" class="form-control" name="Fiyat" onkeyup="sum();" value="@ViewBag.urunSatisFiyat" />
+    <br />
+    @Html.LabelFor(x => x.ToplamTutar)
+    <input type="text" id="inp_toplamTutar" class="form-control" name="ToplamTutar" />
+    @*@Html.TextBoxFor(x => x.ToplamTutar, new { @class = "form-control" })*@
+    @*@Html.TextBoxFor(x => x.KategoriId, new { @class = "form-control" })*@
+    <br />
+    <button class="btn btn-success">Satış Yap</button>
+</form>
+<br />
+@*<input type="text" id="txt1" onkeyup="sum();" />
+<input type="text" id="txt2" onkeyup="sum();" />
+<input type="text" id="txt3" />*@
+<script>
+    function sum() {
+        var sayi1 = document.getElementById(`inp_adet`).value;
+        var sayi2 = document.getElementById(`inp_fiyat`).value;
+        var sonuc = parseInt(sayi1) * parseInt(sayi2);
+        if (!isNaN(sonuc)) {
+            document.getElementById(`inp_toplamTutar`).value = sonuc;   
+        }
+    }
+</script>

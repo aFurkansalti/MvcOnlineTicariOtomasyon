@@ -133,6 +133,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlertlerController.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\CariPanelController.cs" />
     <Compile Include="Controllers\DepartmanController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Controllers\GaleriController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IstatistikController.cs" />
+    <Compile Include="Controllers\KargoController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
@@ -170,10 +172,16 @@
     <Compile Include="Migrations\202401161222036_adds_displayName.designer.cs">
       <DependentUpon>202401161222036_adds_displayName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401261256473_denemeKargo1.cs" />
+    <Compile Include="Migrations\202401261256473_denemeKargo1.designer.cs">
+      <DependentUpon>202401261256473_denemeKargo1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
     <Compile Include="Models\Siniflar\Group_By\SinifGroupUrunbyMarka.cs" />
+    <Compile Include="Models\Siniflar\KargoDetay.cs" />
+    <Compile Include="Models\Siniflar\KargoTakip.cs" />
     <Compile Include="Models\Siniflar\Model_Classes\DetayModelClass.cs" />
     <Compile Include="Models\Siniflar\Context.cs" />
     <Compile Include="Models\Siniflar\Departman.cs" />
@@ -2179,6 +2187,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\8077066.jpg.jpg" />
+    <Content Include="Image\83639454_8 Professional-Women-Resize-1.jpg.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -3023,7 +3033,10 @@
     <Content Include="Views\Login\CariGirisPartial.cshtml" />
     <Content Include="Views\CariPanel\Siparislerim.cshtml" />
     <Content Include="Views\Login\AdminLogin.cshtml" />
-    <Content Include="Views\Fatura\FaturaDetayPopUpPartial.cshtml" />
+    <Content Include="Views\Alertler\Index.cshtml" />
+    <Content Include="Views\Urun\SatisYap.cshtml" />
+    <Content Include="Views\Kargo\Index.cshtml" />
+    <Content Include="Views\Kargo\YeniKargo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />
@@ -3054,6 +3067,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401161222036_adds_displayName.resx">
       <DependentUpon>202401161222036_adds_displayName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401261256473_denemeKargo1.resx">
+      <DependentUpon>202401261256473_denemeKargo1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

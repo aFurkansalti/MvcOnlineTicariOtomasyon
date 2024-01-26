@@ -71,21 +71,6 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             return View(degerler);
         }
 
-        public ActionResult FaturaDetayPopUpPartial(int id)
-        {
-            var degerler = context.FaturaKalems.Where(x => x.FaturaId == id).ToList();
-
-            var faturaSeriNo = context.Faturalars.Where(x => x.FaturaId == id).Select(x => x.FaturaSeriNo).FirstOrDefault();
-            ViewBag.faturaSeriNo = faturaSeriNo;
-
-            var faturaSiraNo = context.Faturalars.Where(x => x.FaturaId == id).Select(x => x.FaturaSiraNo).FirstOrDefault();
-            ViewBag.faturaSiraNo = faturaSiraNo;
-
-            ViewBag.faturaId = id;
-
-            return PartialView(degerler);
-        }
-
         [HttpGet]
         public ActionResult YeniKalem(int id)
         {

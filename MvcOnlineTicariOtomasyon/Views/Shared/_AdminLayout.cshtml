@@ -9,6 +9,9 @@
     <title>MVC5 İle Online Ticari Otomasyon</title>
     <link href="~/web/dist/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/web/dist/js/scripts.js"></script>
 </head>
 <body>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -98,16 +101,20 @@
                             Faturalar
                         </a>
                         <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
-                            Fatura Kalemleri
-                        </a>
-                        <a class="nav-link" href="tables.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-dollar-sign"></i></div>
                             Giderler
+                        </a>
+                        <a class="nav-link" href="/Kargo/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
+                            Kargolar
                         </a>
                         <a class="nav-link" href="/Urun/UrunListesi">
                             <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                             Pdf ~ Excel
+                        </a>
+                        <a class="nav-link" href="/Alertler/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
+                            Alertler
                         </a>
                         <a class="nav-link" href="/Istatistik/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
@@ -153,8 +160,5 @@
             </footer>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="~/web/dist/js/scripts.js"></script>
 </body>
 </html>
