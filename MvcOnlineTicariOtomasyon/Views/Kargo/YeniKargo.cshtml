@@ -9,7 +9,7 @@
 <br />
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.TakipKodu)
-    @Html.TextBoxFor(x => x.TakipKodu, new { @class = "form-control" })
+    <input type="text" value="@ViewBag.takipKod" class="form-control" name="TakipKodu" readonly/>
     <br />
     @Html.LabelFor(x => x.Personel)
     @Html.TextBoxFor(x => x.Personel, new { @class = "form-control" })
@@ -18,7 +18,7 @@
     @Html.TextBoxFor(x => x.Alici, new { @class = "form-control" })
     <br />
     @Html.LabelFor(x => x.Tarih)
-    <input class="form-control" type="date" name="Tarih" />   
+    <input type="date" class="form-control" name="Tarih" />   
     <br />
     @Html.LabelFor(x => x.Aciklama)
     @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })

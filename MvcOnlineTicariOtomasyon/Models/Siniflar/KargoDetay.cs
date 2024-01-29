@@ -18,7 +18,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
 
         [Column(TypeName = "VarChar")]
         [StringLength(10)]
-        public string TakipKodu { get; set; } // Guid yapabilirsin
+        public string TakipKodu { get; set; } // Guid yapabilirsin 
 
         [Column(TypeName = "VarChar")]
         [StringLength(20)]

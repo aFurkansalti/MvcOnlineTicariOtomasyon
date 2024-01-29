@@ -1,4 +1,5 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,15 @@ namespace MvcOnlineTicariOtomasyon.Controllers
     {
         // GET: Kargo
         Context context = new Context();
-        public ActionResult Index()
+        public ActionResult Index(string prm_kargoTakipKod)
         {
-            var kargolar = context.KargoDetays.ToList();
-            return View(kargolar);
+            var kargoDetaylar = from x in context.KargoDetays select x;
+            if (!string.IsNullOrEmpty(prm_kargoTakipKod))
+            {
+                kargoDetaylar = kargoDetaylar.Where(kargoDetay => kargoDetay.TakipKodu == prm_kargoTakipKod.TrimEnd().TrimStart());
+            }
+            
+            return View(kargoDetaylar.ToList());
         }
 
         [HttpGet]
@@ -31,6 +37,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             s2 = random.Next(10, 99);
             s3 = random.Next(10, 99);
             string kod = s1.ToString() + karakterler[k1] + s2.ToString() + karakterler[k2] + s3.ToString() + karakterler[k3];
+            ViewBag.takipKod = kod;
             return View();
         }
 
@@ -40,6 +47,12 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             context.KargoDetays.Add(kargoDetay);
             context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult KargoTakip(string id)
+        {
+            var degerler = context.KargoTakips.Where(takip => takip.TakipKodu == id).ToList();
+            return View(degerler);
         }
     }
 }
