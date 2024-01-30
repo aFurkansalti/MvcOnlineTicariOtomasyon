@@ -27,6 +27,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult YeniCari(Cariler cariler)
         {
+            cariler.Durum = true;
             context.Cariler.Add(cariler);
             context.SaveChanges();
             return RedirectToAction("Index");

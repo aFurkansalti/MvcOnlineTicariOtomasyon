@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+@{ 
+    var grafik = new Chart(width: 500, height: 500);
+    grafik.AddTitle(text: "Kategoriler ve Ürün Sayıları");
+    grafik.AddLegend(title: "Değerler");
+
+    grafik.AddSeries(
+            name: "Veriler",
+            chartType: "Column",
+            xValue: new [] { "Beyaz Eşya", "Küçük Ev Aletleri", "Mobilya", "Televizyon", "Telefon", "Oyun Konsolu" },
+            yValues: new [] { 500, 200, 400, 700, 300, 100 }
+        );
+    grafik.Write();
+}
+

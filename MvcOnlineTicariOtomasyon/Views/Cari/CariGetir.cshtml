@@ -9,6 +9,7 @@
 
 @using (Html.BeginForm("CariGuncelle", "Cari", FormMethod.Post))
 {
+    @Html.ValidationSummary(true, "", new { @class = "text-danger", @style = "font-size:large" })
     <div class="form-group">
         @Html.HiddenFor(x => x.CariId)
         @Html.LabelFor(x => x.CariAd)
@@ -17,7 +18,7 @@
         <br />
         @Html.LabelFor(x => x.CariSoyad)
         @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color:red" })
+        @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color:red" })  
         <br />
         @Html.LabelFor(x => x.CariSehir)
         @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
@@ -25,7 +26,7 @@
         @Html.LabelFor(x => x.CariMail)
         @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control" })
         <br />
-        <button class="btn btn-default" style="background-color: yellowgreen">Güncelle</button>
+        <button class="btn btn-default" style="background-color: yellowgreen;">Güncelle</button>
     </div>
 }
 
