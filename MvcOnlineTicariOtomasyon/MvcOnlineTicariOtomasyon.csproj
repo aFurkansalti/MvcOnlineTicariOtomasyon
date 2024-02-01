@@ -148,6 +148,7 @@
     <Compile Include="Controllers\KargoController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MesajController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\QRController.cs" />
     <Compile Include="Controllers\SatisController.cs" />
@@ -181,12 +182,17 @@
     <Compile Include="Migrations\202401261256473_denemeKargo1.designer.cs">
       <DependentUpon>202401261256473_denemeKargo1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401310647224_DateToSmalldatetimeInMesajlar.cs" />
+    <Compile Include="Migrations\202401310647224_DateToSmalldatetimeInMesajlar.designer.cs">
+      <DependentUpon>202401310647224_DateToSmalldatetimeInMesajlar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
     <Compile Include="Models\Siniflar\Group_By\SinifGroupUrunbyMarka.cs" />
     <Compile Include="Models\Siniflar\KargoDetay.cs" />
     <Compile Include="Models\Siniflar\KargoTakip.cs" />
+    <Compile Include="Models\Siniflar\Mesajlar.cs" />
     <Compile Include="Models\Siniflar\Model_Classes\DetayModelClass.cs" />
     <Compile Include="Models\Siniflar\Context.cs" />
     <Compile Include="Models\Siniflar\Departman.cs" />
@@ -3055,12 +3061,18 @@
     <Content Include="Views\Grafik\Index5.cshtml" />
     <Content Include="Views\Grafik\Index6.cshtml" />
     <Content Include="Views\Grafik\Index7.cshtml" />
+    <Content Include="Views\CariPanel\GelenMesajlar.cshtml" />
+    <Content Include="Views\CariPanel\GidenMesajlar.cshtml" />
+    <Content Include="Views\CariPanel\MesajDetay.cshtml" />
+    <Content Include="Views\CariPanel\YeniMesaj.cshtml" />
+    <Content Include="Views\CariPanel\MessageMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />
     <Folder Include="AdminLTE-3.0.4\docs\assets\img\" />
     <Folder Include="AdminLTE-3.0.4\plugins\jquery-ui\images\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Mesaj\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -3088,6 +3100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401261256473_denemeKargo1.resx">
       <DependentUpon>202401261256473_denemeKargo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401310647224_DateToSmalldatetimeInMesajlar.resx">
+      <DependentUpon>202401310647224_DateToSmalldatetimeInMesajlar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

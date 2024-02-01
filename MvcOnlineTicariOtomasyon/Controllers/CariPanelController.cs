@@ -28,5 +28,57 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var degerler = context.SatisHarekets.Where(x => x.CariId == id).ToList(); 
             return View(degerler);
         }    
+
+        public ActionResult GelenMesajlar()
+        {
+            var mail = (string)Session["CariMail"];
+            var mesajlar = context.Mesajlars.Where(x => x.Alici == mail).OrderByDescending(t => t.Tarih).ToList();
+            return View(mesajlar);
+        }
+
+        public ActionResult GidenMesajlar()
+        {
+            var mail = (string)Session["CariMail"];
+            var mesajlar = context.Mesajlars.Where(x => x.Gonderici == mail).OrderByDescending(t => t.Tarih).ToList();
+            return View(mesajlar);
+        }
+
+        public ActionResult MesajDetay(int id)
+        {
+            var mesaj = context.Mesajlars.Where(x => x.MesajId == id).FirstOrDefault();
+            return View(mesaj);
+        }
+
+        [HttpGet]
+        public ActionResult YeniMesaj()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniMesaj(Mesajlar mesajlar)
+        {
+            var mail = (string)Session["CariMail"];
+            mesajlar.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString());
+            mesajlar.Gonderici = mail;
+            context.Mesajlars.Add(mesajlar);
+            context.SaveChanges();
+            return View();
+        }
+
+        public PartialViewResult MessageMenuPartial()
+        {
+            this.MesajSayilari();
+            return PartialView();
+        }
+
+        private void MesajSayilari()
+        {
+            var mail = (string)Session["CariMail"];
+            var gelenSayisi = context.Mesajlars.Count(x => x.Alici == mail).ToString();
+            ViewBag.gelenSayisi = gelenSayisi;
+            var gidenSayisi = context.Mesajlars.Count(x => x.Gonderici == mail).ToString();
+            ViewBag.gidenSayisi = gidenSayisi;
+        }
     }
 }
