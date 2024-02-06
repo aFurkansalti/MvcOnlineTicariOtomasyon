@@ -7,20 +7,31 @@
 
 <h2 class="my-4">Yeni Cari Ekle</h2>
 
-<form action="@Url.Action("YeniCari", "Cari")" class="form-group" method="post">
+@using (Html.BeginForm("YeniCari", "Cari", FormMethod.Post))
+{
     <div class="form-group">
         @Html.LabelFor(x => x.CariAd)
         @Html.TextBoxFor(x => x.CariAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariAd, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.CariSoyad)
         @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.CariSehir)
         @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.CariMail)
         @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CariMail, "", new { @style = "color:red" })
         <br />
+        @Html.LabelFor(x => x.CariSifre)
+        @Html.TextBoxFor(x => x.CariSifre, new { @class = "form-control", @type = "password"})
+        @Html.ValidationMessageFor(x => x.CariSifre, "", new { @style = "color:red" })
     </div>
     <button type="submit" class="btn btn-success">Kaydet</button>
-</form>
+}
+
+
+

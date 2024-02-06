@@ -7,6 +7,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <br />
 <table class="table table-striped">
     <tr>
@@ -27,11 +30,54 @@
             <td>@cari.CariSoyad</td>
             <td>@cari.CariSehir</td>
             <td>@cari.CariMail</td>
-            <td><a href="/Cari/CariSil/@cari.CariId" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Cari/CariGetir/@cari.CariId" class="btn btn-warning">Güncelle</a></td> 
+            @*<td><a href="/Cari/CariSil/@cari.CariId" id="silButton" class="btn btn-danger" onclick="sweetAlertShow(@cari.CariId)">Sil</a></td>*@
+            @*<td><button id="silButton" class="btn btn-danger" onclick="$(document).ready(sweetAlertShow(@cari.CariId))">Sil</button></td>*@
+            <td>@Html.ActionLink("Sil", "CariSil", new { @id = cari.CariId }, new { @class="btn btn-danger", @onclick="return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
+            <td><a href="/Cari/CariGetir/@cari.CariId" class="btn btn-warning">Güncelle</a></td>
             <td><a href="/Cari/MusteriSatis/@cari.CariId" class="btn btn-default" style="background-color: burlywood">Satış Geçmişi</a></td>
         </tr>
     }
 </table>
-<a href="/Cari/YeniCari/" class="btn btn-info">Yeni Cari Ekle</a>
+<a href="/Cari/YeniCari/" class="btn btn-info" id="btn1">Yeni Cari Ekle</a>
 
+@*<script>
+    //function sweetAlertShow(id) {
+    //    Swal.fire({
+    //        title: 'Emin misiniz?',
+    //        text: 'Bu öğeyi silmek istediğinizden emin misiniz?',
+    //        icon: 'warning',
+    //        showCancelButton: true,
+    //        confirmButtonColor: '#3085d6',
+    //        cancelButtonColor: '#d33',
+    //        confirmButtonText: 'Evet, sil!',
+    //        cancelButtonText: 'İptal'
+    //    }).then((result) => {
+    //        // Kullanıcı onayladıysa silme işlemini gerçekleştir
+    //        if (result.isConfirmed) {
+    //            // Silme işlemi için AJAX kullanabilirsiniz
+    //            $.ajax({
+    //                url: '/Cari/CariSil',  // Silme işlemi yapılacak action'ın URL'si
+    //                type: 'POST',  // Veya 'GET' olarak değiştirilebilir
+    //                data: { CariId: `${id}` },  // Silinecek öğe bilgisi
+    //                success: function (data) {
+    //                    // Başarılı bir şekilde silindiğinde kullanıcıya bilgi ver
+    //                    Swal.fire(
+    //                        'Silindi!',
+    //                        'Öğe başarıyla silindi.',
+    //                        'success'
+    //                    );
+    //                },
+    //                error: function () {
+    //                    // Silme işlemi başarısız olduğunda kullanıcıya hata bilgisi ver
+    //                    Swal.fire(
+    //                        'Hata!',
+    //                        'Silme işlemi başarısız oldu.',
+    //                        'error'
+    //                    );
+    //                }
+    //            });
+    //        }
+    //    });
+    //}
+    
+</script>*@

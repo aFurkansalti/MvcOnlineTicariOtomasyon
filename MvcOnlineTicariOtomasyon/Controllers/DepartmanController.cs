@@ -27,6 +27,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult DepartmanEkle(Departman departman)
         {
+            departman.Durum = true;
             context.Departmans.Add(departman);
             context.SaveChanges();
             return RedirectToAction("Index");

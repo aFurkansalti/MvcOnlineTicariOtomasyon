@@ -28,11 +28,20 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpGet]
         public ActionResult YeniUrun()
         {
-            this.dropdownListOfKategori();
+            this.DropdownListOfKategori();
             return View();
         }
 
-        private void dropdownListOfKategori()
+        [HttpPost]
+        public ActionResult YeniUrun(Urun urun)
+        {
+            urun.Durum = true;  
+            context.Uruns.Add(urun);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        private void DropdownListOfKategori()
         {
             List<SelectListItem> kategoriList = (from x in context.Kategoris.ToList()
                                                  select new SelectListItem
@@ -41,14 +50,6 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                                                      Value = x.KategoriId.ToString(),
                                                  }).ToList();
             ViewBag.kategoriList = kategoriList;
-        }
-
-        [HttpPost]
-        public ActionResult YeniUrun(Urun urun)
-        {
-            context.Uruns.Add(urun);
-            context.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         public ActionResult UrunSil(int id)
@@ -62,7 +63,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public ActionResult UrunGetir(int id)
         {
             var urunDeger = context.Uruns.Find(id);
-            this.dropdownListOfKategori();
+            this.DropdownListOfKategori();
             return View("UrunGetir", urunDeger);
         }
 

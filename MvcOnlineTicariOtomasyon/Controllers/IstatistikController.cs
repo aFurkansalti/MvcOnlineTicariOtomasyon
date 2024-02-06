@@ -39,13 +39,14 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var maxMarka = context.Uruns.GroupBy(x => x.Marka).OrderByDescending(y => y.Count()).Select(z => z.Key).FirstOrDefault();
             ViewBag.d12 = maxMarka;
             var maxSatis = context.Uruns.Where(t => t.UrunId == (context.SatisHarekets.GroupBy(x => x.UrunId).OrderByDescending(y => y.Count()).Select(z => z.Key).FirstOrDefault())).Select(u => u.UrunAd).FirstOrDefault();
-            ViewBag.d13 = maxSatis; 
+            ViewBag.d13 = maxSatis;
             var toplamTutar = context.SatisHarekets.Sum(x => x.ToplamTutar).ToString();
             ViewBag.d14 = toplamTutar;
             DateTime bugun = DateTime.Today;
             var bugunSatis = context.SatisHarekets.Count(x => x.Tarih == bugun).ToString();
             ViewBag.d15 = bugunSatis;
-            var bugunSatisTutar = context.SatisHarekets.Where(x => x.Tarih == bugun) != null ? context.SatisHarekets.Where(x => x.Tarih == bugun).Sum(y => y.ToplamTutar * y.Adet).ToString() : "0";
+            var bugunSatisTutar = context.SatisHarekets.Where(x => x.Tarih == bugun).FirstOrDefault() != null ? context.SatisHarekets.Where(x => x.Tarih == bugun).Sum(y => y.ToplamTutar * y.Adet).ToString() : "0";
+            
             ViewBag.d16 = bugunSatisTutar;
             return View();
         }
@@ -53,12 +54,12 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public ActionResult BasitTablolar()
         {
             var numofCaribySehir = (from x in context.Cariler
-                                   group x by x.CariSehir into g
-                                   select new SinifGroupCaribyCarisehir
-                                   {
-                                       Sehir = g.Key,
-                                       Sayi = g.Count()
-                                   }).ToList();
+                                    group x by x.CariSehir into g
+                                    select new SinifGroupCaribyCarisehir
+                                    {
+                                        Sehir = g.Key,
+                                        Sayi = g.Count()
+                                    }).ToList();
             return View(numofCaribySehir);
         }
 

@@ -21,12 +21,18 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpGet]
         public ActionResult YeniCari()
         {
+            ModelState.Remove("CariMail");
+            ModelState.Remove("CariSifre");
             return View();
         }
 
         [HttpPost]
         public ActionResult YeniCari(Cariler cariler)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniCari");
+            }
             cariler.Durum = true;
             context.Cariler.Add(cariler);
             context.SaveChanges();

@@ -32,6 +32,8 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
         public ActionResult SatisGetir(int id)
         {
             DropdownListItems();
@@ -39,6 +41,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             return View("SatisGetir", satis);
         }
 
+        [HttpPost]
         public ActionResult SatisGuncelle(SatisHareket satisHareket_prm)
         {
             var satisHareket_ctx = context.SatisHarekets.Find(satisHareket_prm.SatisId);

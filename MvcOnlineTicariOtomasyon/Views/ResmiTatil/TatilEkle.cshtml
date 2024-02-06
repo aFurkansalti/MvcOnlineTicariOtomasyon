@@ -1,0 +1,129 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.ResmiTatil
+
+@{
+    ViewBag.Title = "TatilEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Tatil Ekleme Sayfası</h2>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@*<form id="myForm" class="form-group" method="post">*@
+@using (Html.BeginForm("TatilEkle", "ResmiTatil", FormMethod.Post, new { @id = "myForm" }))
+{
+    @Html.LabelFor(x => x.GunIsim)
+    @Html.TextBoxFor(x => x.GunIsim, new { @class = "form-control", @id = "gunIsim" })
+    <span id="gunIsimError" class="error-message" style="color: red;"></span>
+    @*@Html.ValidationMessageFor(x => x.GunIsim, "", new { @style = "color:red" })*@
+    <br />
+    @Html.LabelFor(x => x.Sure, new { @class = "mt-2" })
+    @Html.DropDownListFor(x => x.Sure, (List<SelectListItem>)ViewBag.surelerSelectList, new { @class = "form-control", @id = "sureDropDown" })
+    <span id="sureDropDownError" class="error-message" style="color: red;"></span>
+    <br />
+    @Html.LabelFor(x => x.Gun, new { @class = "mt-2" })
+    @Html.DropDownListFor(x => x.Gun, (List<SelectListItem>)ViewBag.gunlersSelectList, new { @class = "form-control", @id = "gunDropDown" })
+    <span id="gunDropDownError" class="error-message" style="color: red;"></span>
+    <br />
+    @Html.LabelFor(x => x.Tarih, new { @class = "mt-2" })
+    <input type="date" class="form-control" id="tarih" name="Tarih" />
+    <span id="tarihError" class="error-message" style="color: red;"></span>
+    <br />
+    <button class="btn btn-primary mt-4">Kaydet</button>
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#gunIsim").on("change", function () {
+            validateGunIsim();
+        })
+
+        $("#tarih").on("change", function () {
+            validateTarih();
+        });
+
+        $("#sureDropDown").on("blur", function () {
+            validateSure();
+        });
+
+        $("#gunDropDown").on("blur", function () {
+            console.log("gun")
+            validateGun();
+
+        });
+
+        $("#myForm").submit(function (event) {
+            if (!validateTarih()) {
+                event.preventDefault(); // Formun gönderilmesini engelle
+            }
+            if (!validateSure()) {
+                event.preventDefault();
+            }
+            if (!validateGun()) {
+                event.preventDefault();
+            }
+            if (!validateGunIsim()) {
+                event.preventDefault();
+            }
+        });
+
+        function validateGunIsim() {
+            var gunIsim = $("#gunIsim").val();
+            var gunIsimError = $("#gunIsimError");
+
+            gunIsimError.text("");
+
+            if (gunIsim === "") {
+                gunIsimError.text("Lütfen günün ismini yazınız.")
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateTarih() {
+            var tarih = $("#tarih").val();
+            var tarihError = $("#tarihError");
+
+            // Hata mesajlarını temizle
+            tarihError.text("");
+
+            // Tarih kontrolü
+            if (tarih === "") {
+                tarihError.text("Lütfen tarih giriniz.");
+                return false;
+            }
+
+            return true; // Hata yoksa true döndür
+        }
+
+        function validateSure() {
+            var sure = $("#sureDropDown").val();
+            var sureError = $("#sureDropDownError");
+            
+            sureError.text("");
+
+            if (sure === `0`) {
+                sureError.text("Lütfen süreyi sıfırdan farklı tanımlayınız.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateGun() {
+            var gun = $("#gunDropDown").val();
+            var gunError = $("#gunDropDownError");
+
+            gunError.text("");
+
+            if (gun === `Gün Seçiniz`) {
+                gunError.text("Lütfen gün seçiniz.");
+                return false;
+            }
+
+            return true;
+        }
+    });
+</script>

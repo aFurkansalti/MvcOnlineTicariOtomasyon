@@ -151,6 +151,7 @@
     <Compile Include="Controllers\MesajController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\QRController.cs" />
+    <Compile Include="Controllers\ResmiTatilController.cs" />
     <Compile Include="Controllers\SatisController.cs" />
     <Compile Include="Controllers\UrunController.cs" />
     <Compile Include="Controllers\UrunDetayController.cs" />
@@ -186,6 +187,30 @@
     <Compile Include="Migrations\202401310647224_DateToSmalldatetimeInMesajlar.designer.cs">
       <DependentUpon>202401310647224_DateToSmalldatetimeInMesajlar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402050834589_resmiTatil.cs" />
+    <Compile Include="Migrations\202402050834589_resmiTatil.designer.cs">
+      <DependentUpon>202402050834589_resmiTatil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402050859153_addPropertyResmiTatil.cs" />
+    <Compile Include="Migrations\202402050859153_addPropertyResmiTatil.designer.cs">
+      <DependentUpon>202402050859153_addPropertyResmiTatil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402051040093_resmiTatilGunSure.cs" />
+    <Compile Include="Migrations\202402051040093_resmiTatilGunSure.designer.cs">
+      <DependentUpon>202402051040093_resmiTatilGunSure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402051047034_addedStringLengthToResmiTatil.cs" />
+    <Compile Include="Migrations\202402051047034_addedStringLengthToResmiTatil.designer.cs">
+      <DependentUpon>202402051047034_addedStringLengthToResmiTatil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402060712158_mig_addsRequiredToCariler.cs" />
+    <Compile Include="Migrations\202402060712158_mig_addsRequiredToCariler.designer.cs">
+      <DependentUpon>202402060712158_mig_addsRequiredToCariler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402061127592_mig_addsRequiredToResmiTatil.cs" />
+    <Compile Include="Migrations\202402061127592_mig_addsRequiredToResmiTatil.designer.cs">
+      <DependentUpon>202402061127592_mig_addsRequiredToResmiTatil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
@@ -202,6 +227,7 @@
     <Compile Include="Models\Siniflar\Gider.cs" />
     <Compile Include="Models\Siniflar\Kategori.cs" />
     <Compile Include="Models\Siniflar\Personel.cs" />
+    <Compile Include="Models\Siniflar\ResmiTatil.cs" />
     <Compile Include="Models\Siniflar\SatisHareket.cs" />
     <Compile Include="Models\Siniflar\Group_By\SinifGroupPersonelbyDepartman.cs" />
     <Compile Include="Models\Siniflar\Group_By\SinifGroupCaribyCarisehir.cs" />
@@ -3066,6 +3092,9 @@
     <Content Include="Views\CariPanel\MesajDetay.cshtml" />
     <Content Include="Views\CariPanel\YeniMesaj.cshtml" />
     <Content Include="Views\CariPanel\MessageMenuPartial.cshtml" />
+    <Content Include="Views\ResmiTatil\Index.cshtml" />
+    <Content Include="Views\ResmiTatil\TatilEkle.cshtml" />
+    <Content Include="Views\ResmiTatil\TatilGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />
@@ -3103,6 +3132,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401310647224_DateToSmalldatetimeInMesajlar.resx">
       <DependentUpon>202401310647224_DateToSmalldatetimeInMesajlar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402050834589_resmiTatil.resx">
+      <DependentUpon>202402050834589_resmiTatil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402050859153_addPropertyResmiTatil.resx">
+      <DependentUpon>202402050859153_addPropertyResmiTatil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402051040093_resmiTatilGunSure.resx">
+      <DependentUpon>202402051040093_resmiTatilGunSure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402051047034_addedStringLengthToResmiTatil.resx">
+      <DependentUpon>202402051047034_addedStringLengthToResmiTatil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402060712158_mig_addsRequiredToCariler.resx">
+      <DependentUpon>202402060712158_mig_addsRequiredToCariler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402061127592_mig_addsRequiredToResmiTatil.resx">
+      <DependentUpon>202402061127592_mig_addsRequiredToResmiTatil.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
