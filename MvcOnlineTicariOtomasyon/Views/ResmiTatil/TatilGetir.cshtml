@@ -10,21 +10,21 @@
 @using (Html.BeginForm("TatilGuncelle", "ResmiTatil", FormMethod.Post, new { @id = "myForm" }))
 {
     @Html.HiddenFor(x => x.Id)
-    @Html.LabelFor(x => x.GunIsim)
+    @Html.LabelFor(x => x.GunIsim, new { @id = "gunIsimLabel" })
     @Html.TextBoxFor(x => x.GunIsim, new { @class = "form-control", @id = "gunIsim" })
     <span id="gunIsimError" class="error-message" style="color: red;"></span>
     @*@Html.ValidationMessageFor(x => x.GunIsim, "", new { @style = "color:red" })*@
     <br />
-    @Html.LabelFor(x => x.Sure, new { @class = "mt-2" })
+    @Html.LabelFor(x => x.Sure, new { @class = "mt-2", @id = "sureDropDownLabel" })
     @Html.DropDownListFor(x => x.Sure, (List<SelectListItem>)ViewBag.surelerSelectList, new { @class = "form-control", @id = "sureDropDown" })
     <span id="sureDropDownError" class="error-message" style="color: red;"></span>
     <br />
-    @Html.LabelFor(x => x.Gun, new { @class = "mt-2" })
+    @Html.LabelFor(x => x.Gun, new { @class = "mt-2", @id = "gunDropDownLabel" })
     @Html.DropDownListFor(x => x.Gun, (List<SelectListItem>)ViewBag.gunlersSelectList, new { @class = "form-control", @id = "gunDropDown" })
     <span id="gunDropDownError" class="error-message" style="color: red;"></span>
     <br />
-    <label class="mt-2">Tarih: @Model.Tarih</label>
-    <input type="date" class="form-control" id="tarih" name="Tarih" value="@Model.Tarih" />
+    @Html.LabelFor(x => x.Tarih, new { @class = "mt-2", @id = "tarihLabel" })
+    <input type="date" class="form-control" id="tarih" name="Tarih" />
     <span id="tarihError" class="error-message" style="color: red;"></span>
     <br />
     <div class="mt-2">
@@ -48,9 +48,7 @@
         });
 
         $("#gunDropDown").on("blur", function () {
-            console.log("gun")
             validateGun();
-
         });
 
         $("#myForm").submit(function (event) {
@@ -69,13 +67,24 @@
         });
 
         function validateGunIsim() {
-            var gunIsim = $("#gunIsim").val();
+            var gunIsim = $("#gunIsim");
+            var gunIsimValue = gunIsim.val();
+            var gunIsimLabel = $("#gunIsimLabel");
             var gunIsimError = $("#gunIsimError");
 
             gunIsimError.text("");
+            gunIsim.css("border-color", "black");
+            gunIsimLabel.css("color", "black");
 
-            if (gunIsim === "") {
+            if (gunIsimValue === "") {
                 gunIsimError.text("Lütfen günün ismini yazınız.")
+                gunIsim.css("border-color", "red");
+                gunIsimLabel.css("color", "red");
+                return false;
+            } else if (gunIsimValue.length > 25) {
+                gunIsimError.text("Lütfen en fazla 25 karakter giriniz.")
+                gunIsim.css("border-color", "red");
+                gunIsimLabel.css("color", "red");
                 return false;
             }
 
@@ -83,15 +92,21 @@
         }
 
         function validateTarih() {
-            var tarih = $("#tarih").val();
+            var tarih = $("#tarih");
+            var tarihValue = tarih.val();
+            var tarihLabel = $("#tarihLabel");
             var tarihError = $("#tarihError");
 
             // Hata mesajlarını temizle
             tarihError.text("");
+            tarih.css("border-color", "black");
+            tarihLabel.css("color", "black");
 
             // Tarih kontrolü
-            if (tarih === "") {
+            if (tarihValue === "") {
                 tarihError.text("Lütfen tarih giriniz.");
+                tarih.css("border-color", "red");
+                tarihLabel.css("color", "red");
                 return false;
             }
 
@@ -99,13 +114,19 @@
         }
 
         function validateSure() {
-            var sure = $("#sureDropDown").val();
+            var sure = $("#sureDropDown");
+            var sureValue = sure.val();
+            var sureLabel = $("#sureDropDownLabel");
             var sureError = $("#sureDropDownError");
 
             sureError.text("");
+            sure.css("border-color", "black");
+            sureLabel.css("color", "black");
 
-            if (sure === `0`) {
+            if (sureValue === `0`) {
                 sureError.text("Lütfen süreyi sıfırdan farklı tanımlayınız.");
+                sure.css("border-color", "red");
+                sureLabel.css("color", "red");
                 return false;
             }
 
@@ -113,13 +134,19 @@
         }
 
         function validateGun() {
-            var gun = $("#gunDropDown").val();
+            var gun = $("#gunDropDown");
+            var gunValue = gun.val();
+            var gunLabel = $("#gunDropDownLabel");
             var gunError = $("#gunDropDownError");
 
             gunError.text("");
+            gun.css("border-color", "black");
+            gunLabel.css("color", "black");
 
-            if (gun === `Gün Seçiniz`) {
+            if (gunValue === `Gün Seçiniz`) {
                 gunError.text("Lütfen gün seçiniz.");
+                gun.css("border-color", "red");
+                gunLabel.css("color", "red");
                 return false;
             }
 

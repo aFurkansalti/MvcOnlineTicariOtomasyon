@@ -18,7 +18,7 @@
     {
         <tr>
             <td>@kategori.KategoriAd</td>
-            <td><a href="/Kategori/KategoriSil/@kategori.KategoriId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Kategori/KategoriSil/@kategori.KategoriId" class="btn btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a></td>
             <td><a href="/Kategori/KategoriGetir/@kategori.KategoriId" class="btn btn-warning">Güncelle</a></td>
         </tr>
     }

@@ -24,12 +24,15 @@
     @Html.TextBoxFor(x => x.SatisFiyat, new { @class = "form-control" })
     <br />
     @Html.LabelFor(x => x.Kategori.KategoriId)
-    @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, "Lütfen bir kategori seçiniz", new { @class = "form-control" })
     @*@Html.TextBoxFor(x => x.KategoriId, new { @class = "form-control" })*@
     <br />
     @Html.LabelFor(x => x.UrunGorsel)
     @Html.TextBoxFor(x => x.UrunGorsel, new { @class = "form-control" })
     <br />
-    <button class="btn btn-success">Kaydet</button>
+    <button class="btn btn-success mr-2">Kaydet</button>
+    <a href="/Urun/Index" class="btn btn-danger">İptal</a>
 </form>
+
+
 

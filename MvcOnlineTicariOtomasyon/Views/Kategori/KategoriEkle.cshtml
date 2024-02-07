@@ -8,15 +8,61 @@
 <br />
 <h2>Yeni Kategori Sayfası</h2>
 <br />
-<form class="form-group" method="post">
-    @Html.LabelFor(x => x.KategoriAd)
-    @Html.TextBoxFor(x => x.KategoriAd, new { @class = "form-control" })
+<form class="form-group" method="post" id="myForm">
+    @Html.LabelFor(x => x.KategoriAd, new { @id = "kategoriAdLabel" })
+    @Html.TextBoxFor(x => x.KategoriAd, new { @class = "form-control", @id = "kategoriAdTextBox" })
+    <span id="kategoriAdError" class="error-message" style="color: red;"></span>
     <br />
-    <button class="btn btn-info" id="Btn1">Kaydet</button>
+    <div class="mt-2">
+        <button class="btn btn-info mr-2" id="Btn1">Kaydet</button>
+        <a href="/Kategori/Index" class="btn btn-danger">İptal</a>
+    </div>
+    
     <script>
-        $(`#Btn1`).click(function () {
-            alert("Kategori başırılı bir şekilde eklendi");
+        //$(`#Btn1`).click(function () {
+        //    alert("Kategori başırılı bir şekilde eklendi");
+        //});
+
+        $("document").ready(function () {
+            $("#kategoriAdTextBox").on("change", function () {
+                validateKategoriIsim();
+            })
+
+            $("#myForm").submit(function (event) {
+                if (!validateKategoriIsim()) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateKategoriIsim() {
+                var kategoriAdTextBox = $('#kategoriAdTextBox');
+                var kategoriAdTextBoxValue = kategoriAdTextBox.val();
+                var kategoriAdLabel = $('#kategoriAdLabel');
+                var kategoriAdError = $('#kategoriAdError');
+
+                kategoriAdError.hide();
+                kategoriAdLabel.css("color", "black");
+                kategoriAdTextBox.css("border-color", "black");
+
+                if (kategoriAdTextBoxValue === "") {
+                    kategoriAdError.show();
+                    kategoriAdError.text("Lütfen kategori girişi yapınız!");
+                    kategoriAdLabel.css("color", "red");
+                    kategoriAdTextBox.css("border-color", "red");
+                    return false;
+                } else if (kategoriAdTextBoxValue.length > 30) {
+                    kategoriAdError.show();
+                    kategoriAdError.text("En fazla 30 karakter girişi yapınız!");
+                    kategoriAdLabel.css("color", "red");
+                    kategoriAdTextBox.css("border-color", "red");
+                    return false;
+                }
+
+                return true;
+            }
         });
+
+        
     </script>
 </form>
 

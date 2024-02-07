@@ -32,7 +32,7 @@
             <td>@cari.CariMail</td>
             @*<td><a href="/Cari/CariSil/@cari.CariId" id="silButton" class="btn btn-danger" onclick="sweetAlertShow(@cari.CariId)">Sil</a></td>*@
             @*<td><button id="silButton" class="btn btn-danger" onclick="$(document).ready(sweetAlertShow(@cari.CariId))">Sil</button></td>*@
-            <td>@Html.ActionLink("Sil", "CariSil", new { @id = cari.CariId }, new { @class="btn btn-danger", @onclick="return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
+            <td>@Html.ActionLink("Sil", "CariSil", new { @id = cari.CariId }, new { @class="btn btn-danger", @onclick="return confirm('Silmek İstiyor musunuz?')" })</td>
             <td><a href="/Cari/CariGetir/@cari.CariId" class="btn btn-warning">Güncelle</a></td>
             <td><a href="/Cari/MusteriSatis/@cari.CariId" class="btn btn-default" style="background-color: burlywood">Satış Geçmişi</a></td>
         </tr>

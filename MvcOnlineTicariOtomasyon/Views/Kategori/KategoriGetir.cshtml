@@ -11,8 +11,47 @@
 {
     <div class="form-group">
         @Html.HiddenFor(x => x.KategoriId)
-        @Html.LabelFor(x => x.KategoriAd)
-        @Html.TextBoxFor(x => x.KategoriAd)
+        @Html.LabelFor(x => x.KategoriAd, new { @id = "kategoriAdLabel" })
+        @Html.TextBoxFor(x => x.KategoriAd, new { @class = "form-control", @id = "kategoriAdTextBox" })
+        <span id="kategoriError" class="error-message" style="color: red;"></span>
     </div>
     <button class="btn btn-warning">Güncelle</button>
+    <a href="/Kategori/Index" class="btn btn-danger">İptal</a>
 }
+
+<script>
+    $(`#Btn1`).click(function () {
+        alert("Kategori başırılı bir şekilde eklendi");
+    });
+
+    $("document").ready(function () {
+        validateKategoriIsim();
+    });
+
+    $("#myForm").submit(function (event) {
+        if (!validateKategoriIsim()) {
+            event.preventDefault();
+        }
+    });
+
+    function validateKategoriIsim() {
+        var kategoriAdTextBox = $('#kategoriAdTextBox');
+        var kategoriAdTextBoxValue = kategoriAdTextBox.val();
+        var kategoriAdLabel = $('#kategoriAdLabel');
+        var kategoriAdError = $('#kategoriAdError');
+
+        kategoriAdError.hidden();
+        kategoriAdLabel.css("color", "black");
+        kategoriAdTextBox.css("border-color", "black");
+
+        if (kategoriAdTextBoxValue === "") {
+            kategoriAdError.show();
+            kategoriAdError.text("Lütfen kategori girişi yapınız!");
+            kategoriAdLabel.css("color", "black");
+            kategoriAdTextBox.css("border-color", "black");
+            return false;
+        }
+
+        return true;
+    }
+</script>
