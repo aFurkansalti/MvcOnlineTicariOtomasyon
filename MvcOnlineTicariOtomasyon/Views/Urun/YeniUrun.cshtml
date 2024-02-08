@@ -7,9 +7,10 @@
 <br />
 <h2>Yeni Ürün Sayfası</h2>
 <br />
-<form class="form-group" accept-charset="UTF-8" method="post">
-    @Html.LabelFor(x => x.UrunAd)
-    @Html.TextBoxFor(x => x.UrunAd, new { @class = "form-control" })
+<form class="form-group" id="myForm" accept-charset="UTF-8" method="post">
+    @Html.LabelFor(x => x.UrunAd, new { @id = "urunAdLabel" })
+    @Html.TextBoxFor(x => x.UrunAd, new { @class = "form-control", @id = "urunAdTextBox" })
+    <span id="urunAdError" class="error-message" style="color: red;"></span> 
     <br />
     @Html.LabelFor(x => x.Marka)
     @Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })
@@ -35,4 +36,46 @@
 </form>
 
 
+<script>
+    $(document).ready(function () {
+        $("#urunAdTextBox").on("change", function () {
+            validationTextBox("#urunAdLabel", "#urunAdTextBox", "#urunAdError", "Lütfen ürün adını giriniz!", 30);
+        });
 
+        $("#myForm").submit((event) => {
+            if (!validationTextBox("#urunAdLabel", "#urunAdTextBox", "#urunAdError", "Lütfen ürün adını giriniz!", 30)) {
+                event.preventDefault();
+            }
+
+            
+        })
+
+        function validationTextBox(labelId, textBoxId, errorId, message, charLength) {
+            var urunAdTextBox = $(textBoxId);
+            var urunAdTextBoxValue = urunAdTextBox.val();
+            var urunAdLabel = $(labelId);
+            var urunAdError = $(errorId);
+
+            urunAdError.text("");
+            urunAdTextBox.css("border-color", "black");
+            urunAdLabel.css("color", "black");
+
+            if (urunAdTextBoxValue === "") {
+                urunAdError.text(message);
+                urunAdTextBox.css("border-color", "red");
+                urunAdLabel.css("color", "red");
+                return false;
+            } else if (urunAdTextBoxValue.length > charLength) {
+                urunAdError.text(`En fazla ${charLength} karakter yazabilirsiniz!`);
+                urunAdTextBox.css("border-color", "red");
+                urunAdLabel.css("color", "red");
+                return false;
+            }
+
+            return true;
+        }
+
+    })
+
+    
+</script>

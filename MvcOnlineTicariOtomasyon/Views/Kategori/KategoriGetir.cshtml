@@ -7,7 +7,7 @@
 <br />
 <h2>Kategori Güncelleme</h2>
 <br />
-@using (Html.BeginForm("KategoriGuncelle", "Kategori", FormMethod.Post))
+@using (Html.BeginForm("KategoriGuncelle", "Kategori", FormMethod.Post, new { @id = "myForm" }))
 {
     <div class="form-group">
         @Html.HiddenFor(x => x.KategoriId)
@@ -20,38 +20,48 @@
 }
 
 <script>
-    $(`#Btn1`).click(function () {
-        alert("Kategori başırılı bir şekilde eklendi");
-    });
+    //$(`#Btn1`).click(function () {
+    //    alert("Kategori başırılı bir şekilde eklendi");
+    //});
 
     $("document").ready(function () {
-        validateKategoriIsim();
-    });
+        $("#kategoriAdTextBox").on("change", function () {
+            validateKategoriIsim();
+        })
 
-    $("#myForm").submit(function (event) {
-        if (!validateKategoriIsim()) {
-            event.preventDefault();
-        }
-    });
+        $("#myForm").submit(function (event) {
+            if (!validateKategoriIsim()) {
+                event.preventDefault();
+            }
+        });
 
-    function validateKategoriIsim() {
-        var kategoriAdTextBox = $('#kategoriAdTextBox');
-        var kategoriAdTextBoxValue = kategoriAdTextBox.val();
-        var kategoriAdLabel = $('#kategoriAdLabel');
-        var kategoriAdError = $('#kategoriAdError');
+        function validateKategoriIsim() {
+            var kategoriAdTextBox = $('#kategoriAdTextBox');
+            var kategoriAdTextBoxValue = kategoriAdTextBox.val();
+            var kategoriAdLabel = $('#kategoriAdLabel');
+            var kategoriAdError = $('#kategoriAdError');
 
-        kategoriAdError.hidden();
-        kategoriAdLabel.css("color", "black");
-        kategoriAdTextBox.css("border-color", "black");
-
-        if (kategoriAdTextBoxValue === "") {
-            kategoriAdError.show();
-            kategoriAdError.text("Lütfen kategori girişi yapınız!");
+            kategoriAdError.hide();
             kategoriAdLabel.css("color", "black");
             kategoriAdTextBox.css("border-color", "black");
-            return false;
-        }
 
-        return true;
-    }
+            if (kategoriAdTextBoxValue === "") {
+                kategoriAdError.show();
+                kategoriAdError.text("Lütfen kategori girişi yapınız!");
+                kategoriAdLabel.css("color", "red");
+                kategoriAdTextBox.css("border-color", "red");
+                return false;
+            } else if (kategoriAdTextBoxValue.length > 30) {
+                kategoriAdError.show();
+                kategoriAdError.text("En fazla 30 karakter girişi yapınız!");
+                kategoriAdLabel.css("color", "red");
+                kategoriAdTextBox.css("border-color", "red");
+                return false;
+            }
+
+            return true;
+        }
+    });
+
+    
 </script>
