@@ -14,10 +14,15 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         // cari
         // personel
         public DateTime Tarih { get; set; }
+
+        [Required(ErrorMessage = "Adeti boş geçemezsiniz.")]
         public int Adet { get; set; }
+
+        [Required(ErrorMessage = "Fiyatı boş geçemezsiniz.")]
         public decimal Fiyat { get; set; }
 
         [Display(Name = "Toplam Tutar")]
+        [Required(ErrorMessage = "Toplam tutarı boş geçemezsiniz.")]
         public decimal ToplamTutar { get; set; }
 
         public int UrunId { get; set; }

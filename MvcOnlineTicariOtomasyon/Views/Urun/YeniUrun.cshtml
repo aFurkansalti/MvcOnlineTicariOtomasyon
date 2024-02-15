@@ -4,78 +4,178 @@
     ViewBag.Title = "YeniUrun";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <br />
 <h2>Yeni Ürün Sayfası</h2>
 <br />
-<form class="form-group" id="myForm" accept-charset="UTF-8" method="post">
+@*<form class="form-group" id="myForm" accept-charset="UTF-8" method="post">*@
+@using (Html.BeginForm("YeniUrun", "Urun", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.LabelFor(x => x.UrunAd, new { @id = "urunAdLabel" })
     @Html.TextBoxFor(x => x.UrunAd, new { @class = "form-control", @id = "urunAdTextBox" })
-    <span id="urunAdError" class="error-message" style="color: red;"></span> 
+    @*<input id="urunAdTextBox" class="form-control" name="UrunAd" />*@
+    @*<span id="urunAdError" class="error-message" style="color: red;"></span>*@
+    @Html.ValidationMessageFor(x => x.UrunAd, "", new { @class = "text-danger" })
+
     <br />
-    @Html.LabelFor(x => x.Marka)
-    @Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Marka, new { @id = "markaLabel" })
+    @Html.TextBoxFor(x => x.Marka, new { @class = "form-control", @id = "markaTextBox" })
+    @*<span id="markaError" class="error-message" style="color: red;"></span>*@
+    @Html.ValidationMessageFor(x => x.Marka, "", new { @class = "text-danger" })
     <br />
-    @Html.LabelFor(x => x.Stok)
-    @Html.TextBoxFor(x => x.Stok, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Stok, new { @id = "stokLabel" })
+    @Html.TextBoxFor(x => x.Stok, new { @class = "form-control", @id = "stokTextBox", @type = "number" })
+    @*<span id="stokError" , class="error-message" style="color: red;"></span>*@
+    @Html.ValidationMessageFor(x => x.Stok, "", new { @class = "text-danger" })
     <br />
-    @Html.LabelFor(x => x.AlisFiyat)
-    @Html.TextBoxFor(x => x.AlisFiyat, new { @class = "form-control" })
+    @Html.LabelFor(x => x.AlisFiyat, new { @id = "alisFiyatLabel" })
+    @Html.TextBoxFor(x => x.AlisFiyat, new { @class = "fiyat form-control", @type = "text", @id = "alisFiyatTextBox" })
+    @*<span id="alisFiyatError" class="error-message" style="color: red;"></span>*@
+    @Html.ValidationMessageFor(x => x.AlisFiyat, "", new { @class = "text-danger" })
     <br />
-    @Html.LabelFor(x => x.SatisFiyat)
-    @Html.TextBoxFor(x => x.SatisFiyat, new { @class = "form-control" })
+    @Html.LabelFor(x => x.SatisFiyat, new { @id = "satisFiyatLabel" })
+    @Html.TextBoxFor(x => x.SatisFiyat, new { @class = "fiyat form-control", @id = "satisFiyatTextBox", @type = "text" })
+    @Html.ValidationMessageFor(x => x.SatisFiyat, "", new { @class = "text-danger" })
+    @*<span id="satisFiyatError" class="error-message" style="color: red;"></span>*@
     <br />
     @Html.LabelFor(x => x.Kategori.KategoriId)
-    @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, "Lütfen bir kategori seçiniz", new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Kategori.KategoriId, "", new { @class = "text-danger" })
     @*@Html.TextBoxFor(x => x.KategoriId, new { @class = "form-control" })*@
     <br />
     @Html.LabelFor(x => x.UrunGorsel)
-    @Html.TextBoxFor(x => x.UrunGorsel, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.UrunGorsel, new { @class = "form-control-file", @type = "file" })
+    @Html.ValidationMessageFor(x => x.UrunGorsel, "", new { @class = "text-danger", @required = "required" })
     <br />
-    <button class="btn btn-success mr-2">Kaydet</button>
+    <button id="submitButton" class="btn btn-success mr-2">Kaydet</button>
     <a href="/Urun/Index" class="btn btn-danger">İptal</a>
-</form>
-
+    @*</form>*@
+}
 
 <script>
     $(document).ready(function () {
-        $("#urunAdTextBox").on("change", function () {
-            validationTextBox("#urunAdLabel", "#urunAdTextBox", "#urunAdError", "Lütfen ürün adını giriniz!", 30);
+        $('#submitButton').click(function () {
+
+            var fiyatValue = $('.fiyat').val();
+
+            // Fiyat değerini doğru formatta kontrol et
+            if (!isValidPriceFormat(fiyatValue)) {
+                alert('Geçersiz fiyat formatı. Sadece sayılar ve virgül kullanabilirsiniz.');
+                return false; // Formun gönderilmesini engeller
+            }
+
         });
 
-        $("#myForm").submit((event) => {
-            if (!validationTextBox("#urunAdLabel", "#urunAdTextBox", "#urunAdError", "Lütfen ürün adını giriniz!", 30)) {
-                event.preventDefault();
-            }
+        function isValidPriceFormat(price) {
 
-            
-        })
+            var regex = /^[0-9]+(,[0-9]{1,2})?$/;
 
-        function validationTextBox(labelId, textBoxId, errorId, message, charLength) {
-            var urunAdTextBox = $(textBoxId);
-            var urunAdTextBoxValue = urunAdTextBox.val();
-            var urunAdLabel = $(labelId);
-            var urunAdError = $(errorId);
-
-            urunAdError.text("");
-            urunAdTextBox.css("border-color", "black");
-            urunAdLabel.css("color", "black");
-
-            if (urunAdTextBoxValue === "") {
-                urunAdError.text(message);
-                urunAdTextBox.css("border-color", "red");
-                urunAdLabel.css("color", "red");
-                return false;
-            } else if (urunAdTextBoxValue.length > charLength) {
-                urunAdError.text(`En fazla ${charLength} karakter yazabilirsiniz!`);
-                urunAdTextBox.css("border-color", "red");
-                urunAdLabel.css("color", "red");
-                return false;
-            }
-
-            return true;
+            return regex.test(price);
         }
-
-    })
-
-    
+    });
 </script>
+
+@*<script src="~/Content/js/jquery-1.11.2.js"></script>*@
+@*<script src="~/Content/js/jquery.validate.min.js"></script>*@
+@*<script src="~/Content/js/jquery.validate.unobtrusive.min.js"></script>*@
+<script>
+    //$(document).ready(function () {
+    //    $("#satisFiyatTextBox").on("change", function () {
+    //        validateSatis();
+    //    });
+
+    //    $("input.decimal").on("input", function () {
+    //        var position = this.selectionStart - 1;
+    //        // remove all but number and .
+    //        var fixed = this.value.replace(/[^0-9\.]/g, "");
+    //        if (fixed.charAt(0) === ".")
+    //            // can't start with .
+    //            fixed = fixed.slice(1);
+
+    //        var pos = fixed.indexOf(".") + 1;
+    //        if (pos >= 0)
+    //            // avoid more than one .
+    //            fixed = fixed.substr(0, pos) + fixed.slice(pos).replace(".", "");
+
+    //        if (this.value !== fixed) {
+    //            this.value = fixed;
+    //            this.selectionStart = position;
+    //            this.selectionEnd = position;
+    //        }
+    //    });
+
+    //    $("#myForm").submit(function (event) {
+    //        if (!validateSatis()) {
+    //            event.preventDefault(); // Formun gönderilmesini engelle
+    //        }
+    //    });
+
+    //    function validateSatis() {
+    //        var satisFiyatLabel = $("#satisFiyatLabel");
+    //        var satisFiyatTextBox = $("#satisFiyatTextBox");
+    //        var satisFiyatTextBoxValue = satisFiyatTextBox.val();
+    //        var satisFiyatError = $("#satisFiyatError");
+
+    //        satisFiyatError.text("");
+
+    //        if (satisFiyatTextBoxValue === "") {
+    //            satisFiyatError.text("boş geçilmez");
+    //            return false;
+    //        }
+
+    //        return true;
+    //    }
+    //});
+
+
+
+        //$("input.decimal").bind("change keyup input", function () {
+        //    var position = this.selectionStart - 1;
+        //    //remove all but number and .
+        //    var fixed = this.value.replace(/[^0-9\.]/g, "");
+        //    if (fixed.charAt(0) === ".")
+        //        //can't start with .
+        //        fixed = fixed.slice(1);
+
+        //    var pos = fixed.indexOf(".") + 1;
+        //    if (pos >= 0)
+        //        //avoid more than one .
+        //        fixed = fixed.substr(0, pos) + fixed.slice(pos).replace(".", "");
+
+        //    if (this.value !== fixed) {
+        //        this.value = fixed;
+        //        this.selectionStart = position;
+        //        this.selectionEnd = position;
+        //    }
+        //});
+
+        //$("input.integer").bind("change keyup input", function () {
+        //    var position = this.selectionStart - 1;
+        //    //remove all but number and .
+        //    var fixed = this.value.replace(/[^0-9]/g, "");
+
+        //    if (this.value !== fixed) {
+        //        this.value = fixed;
+        //        this.selectionStart = position;
+        //        this.selectionEnd = position;
+        //    }
+        //});
+
+        //$("#myForm").submit(function (event) {
+        //    // Ondalıklı sayı inputunu düzenle
+        //    var decimalInput = $("#satisFiyatTextBox");
+        //    decimalInput.val(decimalInput.val().replace(",", "."));
+
+        //    // Tam sayı inputunu düzenle (Opsiyonel, eğer başka bir integer alanınız varsa)
+        //    // var integerInput = $("#aninputInteger");
+        //    // integerInput.val(integerInput.val().replace(/[^0-9]/g, ""));
+
+        //    // Form submitine devam et
+        //    return true;
+        //});
+
+
+</script>
+
+
+

@@ -7,7 +7,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<link href="~/Content/PagedList.css" rel="stylesheet" />
+
 <table class="table table-bordered mt-4">
     <tr>
         <th>Kategori Adı</th>
@@ -18,7 +18,7 @@
     {
         <tr>
             <td>@kategori.KategoriAd</td>
-            <td><a href="/Kategori/KategoriSil/@kategori.KategoriId" class="btn btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a></td>
+            <td><a href="/Kategori/KategoriSil/@kategori.KategoriId" class="btn btn-danger" onclick="return confirm('Kategori listeden kaldırılacaktır!')">Sil</a></td>
             <td><a href="/Kategori/KategoriGetir/@kategori.KategoriId" class="btn btn-warning">Güncelle</a></td>
         </tr>
     }

@@ -27,6 +27,10 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult YeniSatis(SatisHareket satisHareket)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniSatis");
+            }
             satisHareket.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString()); 
             context.SatisHarekets.Add(satisHareket);
             context.SaveChanges();

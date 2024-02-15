@@ -16,7 +16,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
             using (Context context = new Context())
             {
-                var degerler = context.Kategoris.ToList().ToPagedList(sayfa, 4);
+                var degerler = context.Kategoris.Where(x => x.Durum == true).ToList().ToPagedList(sayfa, 4);
                 return View(degerler);
             }
         }
@@ -32,6 +32,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
             using (Context context = new Context())
             {
+                kategori.Durum = true;
                 context.Kategoris.Add(kategori);
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -42,8 +43,9 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
             using (Context context = new Context())
             {
-                Kategori kategori = context.Kategoris.Find(id);
-                context.Kategoris.Remove(kategori);
+                //Kategori kategori = context.Kategoris.Find(id);
+                //context.Kategoris.Remove(kategori);
+                context.Kategoris.Find(id).Durum = false;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }

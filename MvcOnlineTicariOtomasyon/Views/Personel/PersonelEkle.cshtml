@@ -17,7 +17,7 @@
         <br />
         @Html.LabelFor(x => x.PersonelGorsel)
         @*@Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })*@
-        <input type="file" name="PersonelGorsel" />
+        <input type="file" name="PersonelGorsel" class="form-control-file"/>
         <br />
         @Html.LabelFor(x => x.Departman.DepartmanAd)
         @Html.DropDownListFor(x => x.DepartmanId, (List<SelectListItem>)ViewBag.departmanlar, new { @class = "form-control" })

@@ -21,8 +21,8 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpGet]
         public ActionResult YeniCari()
         {
-            ModelState.Remove("CariMail");
-            ModelState.Remove("CariSifre");
+            //ModelState.Remove("CariMail");
+            //ModelState.Remove("CariSifre");
             return View();
         }
 

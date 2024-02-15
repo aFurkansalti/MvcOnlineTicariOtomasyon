@@ -12,20 +12,25 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int UrunId { get; set; }
 
+        [Required(ErrorMessage = "Boş geçilmez!")]
         [Display(Name = "Ürün Adı")]
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string UrunAd { get; set; }
 
+        [Required(ErrorMessage = "Boş geçilmez!")]
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string Marka { get; set; }
         public short Stok { get; set; }
 
         [Display(Name = "Alış Fiyatı")]
+        //[DataType(DataType.Currency, ErrorMessage = "Geçersiz karakter.")]
+        //[RegularExpression(@"^\d+([\.,]\d{1,2})?$", ErrorMessage = "Geçersiz fiyat formatı")]
         public decimal AlisFiyat { get; set; }
 
         [Display(Name = "Satış Fiyatı")]
+        [DataType(DataType.Currency, ErrorMessage = "Geçersiz karakter.")]
         public decimal SatisFiyat { get; set; }
         public bool Durum { get; set; }
 
@@ -33,6 +38,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Column(TypeName = "varchar")]
         [StringLength(250)]
         public string UrunGorsel { get; set; }
+
+        [Required(ErrorMessage = "Boş geçilmez!")]
         public int KategoriId { get; set; }
         public virtual Kategori Kategori { get; set; }
         public virtual ICollection<SatisHareket> SatisHarekets { get; set; }

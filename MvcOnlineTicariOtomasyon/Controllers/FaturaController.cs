@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using MvcOnlineTicariOtomasyon.Models.Siniflar;
@@ -30,9 +33,31 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult FaturaEkle(Faturalar fatura)
         {
+            var saatStr = fatura.Saat;
+            if (!this.IsValidTimeFormat(saatStr))
+            {
+                DropdownListTeslim();
+                ModelState.AddModelError("Saat", "Geçersiz saat formatı. HH:mm şeklinde olmalıdır.");
+                return View("FaturaEkle"); // veya başka bir işlem yapabilirsiniz
+            }
+            if (!ModelState.IsValid)
+            {
+                DropdownListTeslim();
+                return View("FaturaEkle");
+            }
+            DropdownListTeslim();
             context.Faturalars.Add(fatura);
             context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private bool IsValidTimeFormat(string time)
+        {
+            //DateTime dummyResult;
+            //return DateTime.TryParseExact(time, "HH:mm:ss.fffffff", CultureInfo.InvariantCulture, DateTimeStyles.None, out dummyResult);
+            var regex = new Regex(@"^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
+
+            return regex.IsMatch(time);
         }
 
         public ActionResult FaturaGetir(int id)

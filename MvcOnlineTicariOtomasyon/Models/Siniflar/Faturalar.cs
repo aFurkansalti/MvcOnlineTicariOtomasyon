@@ -14,7 +14,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
 
         [Display(Name = "Fatura Seri No")]
         [Column(TypeName = "char")]
-        [StringLength(1)]
+        [StringLength(1, ErrorMessage = "Lütfen en fazla 1 karakter girişi yapınız.")]
         public string FaturaSeriNo { get; set; }
 
         [Display(Name = "Fatura Sıra No")]

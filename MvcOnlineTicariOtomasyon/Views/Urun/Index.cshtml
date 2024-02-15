@@ -1,18 +1,26 @@
 ﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
-@model List<Urun>
+@using PagedList
+@using PagedList.Mvc
+@*@model List<Urun>*@
+@model PagedList.IPagedList<Urun>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <br />
 
 @using (Html.BeginForm("Index", "Urun", FormMethod.Get))
 {
     <p>
-        Ürün Adı: @Html.TextBox("prm_urunAd")
-        <input type="submit" value="Ara" />
+        <div><h2>Ürün Listesi</h2></div>
+        <div style="margin-left: 880px">
+            Ürün Adı: @Html.TextBox("prm_urunAd")
+            <input type="submit" value="Ara" id="prm_urunAd" style="margin-left:8px;"/>
+        </div>
     </p>
 }
 
@@ -23,7 +31,6 @@
         <th>Stok</th>
         <th>Alış Fiyat</th>
         <th>Satış Fiyat</th>
-        <th>Durum</th>
         <th>Kategori</th>
         <th>Ürün Görsel</th>
         <th>Sil</th>
@@ -38,14 +45,34 @@
             <td>@urun.Stok</td>
             <td>@urun.AlisFiyat ₺</td>
             <td>@urun.SatisFiyat ₺</td>
-            <td>@urun.Durum</td>
             <td>@urun.Kategori.KategoriAd</td>
             <td><img src="@urun.UrunGorsel" width="150" height="100"></td>
-            <td><a href="/Urun/UrunSil/@urun.UrunId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Urun/UrunSil/@urun.UrunId" class="btn btn-danger" onclick="return confirm('Ürün listeden kaldırılacaktır!')">Sil</a></td>
             <td><a href="/Urun/UrunGetir/@urun.UrunId" class="btn btn-warning">Güncelle</a></td>
-            <td><a href="/Urun/SatisYap/@urun.UrunId" class="btn btn-default" style="background-color: cadetblue">Satış Yap</a></td> 
+            <td><a href="/Urun/SatisYap/@urun.UrunId" class="btn btn-default" style="background-color: cadetblue">Satış Yap</a></td>
         </tr>
     }
 </table>
-<a href="/Urun/YeniUrun/" class="btn btn-primary">Yeni Ürün Ekle</a>
 
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<a href="/Urun/YeniUrun/" class="btn btn-primary" onclick="searchAndPaginate()">Yeni Ürün Ekle</a>
+
+<script>
+        function searchAndPaginate() {
+            var prm_urunAd = $("#prm_urunAd").val();
+            var sayfa = $("#sayfa").val();
+
+            $.ajax({
+                url: '@Url.Action("Index", "Urun")',
+                type: 'GET',
+                data: { prm_urunAd: prm_urunAd, sayfa: sayfa },
+                success: function (result) {
+                    $("#urunListesi").html(result);
+                },
+                error: function () {
+                    alert("Bir hata oluştu.");
+                }
+            });
+        }
+</script>

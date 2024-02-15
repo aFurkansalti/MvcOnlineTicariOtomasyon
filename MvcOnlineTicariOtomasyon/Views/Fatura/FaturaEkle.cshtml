@@ -8,27 +8,87 @@
 <h2 class="my-4">Fatura Ekleme Sayfası</h2>
 
 <form class="form-group" method="post">
+    
     @Html.LabelFor(x => x.FaturaSeriNo)
-    @Html.TextBoxFor(x => x.FaturaSeriNo, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaSeriNo, new { @class = "form-control", @required = "required" })
+    @Html.ValidationMessageFor(x => x.FaturaSeriNo, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.FaturaSiraNo)
-    @Html.TextBoxFor(x => x.FaturaSiraNo, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.FaturaSiraNo, new { @class = "form-control", @required = "required" })
+    @Html.ValidationMessageFor(x => x.FaturaSiraNo, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.Tarih)
-    @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control" })
-    <br />
+    @Html.TextBoxFor(x => x.Tarih, new { @class = "tarih form-control", @type = "date", @required = "required" })
+    @Html.ValidationMessageFor(x => x.Tarih, "", new { @class = "text-danger" })
+    <br /> 
     @Html.LabelFor(x => x.VergiDairesi)
-    @Html.TextBoxFor(x => x.VergiDairesi, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.VergiDairesi, new { @class = "form-control", @required = "required" })
+    @Html.ValidationMessageFor(x => x.VergiDairesi, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.Saat)
-    @Html.TextBoxFor(x => x.Saat, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.Saat, new { @class = "saat form-control", @id = "Saat", @required = "required", @type = "time" })
+    @Html.ValidationMessageFor(x => x.Saat, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.TeslimEden)
-    @Html.DropDownListFor(x => x.TeslimEden, (List<SelectListItem>)ViewBag.teslimEdenler, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.TeslimEden, (List<SelectListItem>)ViewBag.teslimEdenler, "Teslim edeni seçiniz.", new { @class = "form-control", @required = "required" })
+    @Html.ValidationMessageFor(x => x.TeslimEden, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.TeslimAalan)
-    @Html.DropDownListFor(x => x.TeslimAalan, (List<SelectListItem>)ViewBag.teslimAlanlar, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.TeslimAalan, (List<SelectListItem>)ViewBag.teslimAlanlar, "Teslim alanı seçiniz", new { @class = "form-control", @required = "required" })
+    @Html.ValidationMessageFor(x => x.TeslimAalan, "", new { @class = "text-danger" })
     <br />
-    <button class="btn btn-primary">Kaydet</button>
+    <button id="submitButton" class="btn btn-primary">Kaydet</button>
 </form>
+
+<script>
+    $(document).ready(function () {
+        //    $('#submitButton').click(function () {
+        //        // Formdan tarih değerini al
+        //        var tarihValue = $('.tarih').val();
+
+        //        // Tarih değerini doğru formatta kontrol et
+        //        if (!isValidDateFormat(tarihValue)) {
+        //            alert('Geçersiz tarih formatı. gg.aa.yyyy şeklinde olmalıdır.');
+        //            return false; // Formun gönderilmesini engelle
+        //        }
+
+        //        // Diğer kontroller ve form gönderme işlemleri...
+        //    });
+
+        //    // Tarih formatını kontrol eden JavaScript fonksiyonu
+        //    function isValidDateFormat(date) {
+        //        // Regex ile kontrol et
+        //        var regex = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
+
+        //        return regex.test(date);
+        //    }
+
+        $('#submitButton').click(function () {
+            // Formdan saat değerini al
+            var saatValue = $('.saat').val();
+            if (!(saatValue === "")) {
+                // Saat değerini doğru formatta kontrol et
+                if (!isValidTimeFormat(saatValue)) {
+                    alert('Geçersiz saat formatı. ss:dd şeklinde olmalıdır.');
+                    return false; // Formun gönderilmesini engelle
+                }
+            }
+
+            // Diğer kontroller ve form gönderme işlemleri...
+        });
+
+        // Saat formatını kontrol eden JavaScript fonksiyonu
+        function isValidTimeFormat(time) {
+            // JavaScript Date nesnesi oluştur
+            //var dummyDate = new Date('2000-01-01T' + time + 'Z');
+
+            //// NaN kontrolü ile geçerlilik kontrolü yap
+            //return !isNaN(dummyDate);
+            var regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+
+            return regex.test(time);
+        }
+
+    });
+</script>
 

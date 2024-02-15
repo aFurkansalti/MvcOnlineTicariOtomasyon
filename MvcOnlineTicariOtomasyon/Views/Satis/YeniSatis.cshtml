@@ -9,23 +9,117 @@
 
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.Adet)
-    @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.Adet, new { @class = "form-control", @type = "number", @required = "required" })
+    @Html.ValidationMessageFor(x => x.Adet, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.Fiyat)
-    @Html.TextBoxFor(x => x.Fiyat, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.Fiyat, new { @class = "form-control", @required = "required" })
+    @Html.ValidationMessageFor(x => x.Fiyat, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.ToplamTutar)
-    @Html.TextBoxFor(x => x.ToplamTutar, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.ToplamTutar, new { @class = "form-control", @required = "required" })
+    @Html.ValidationMessageFor(x => x.ToplamTutar, "", new { @class = "text-danger" })
     <br />
-    @Html.LabelFor(x => x.Cariler.CariAd)
-    @Html.DropDownListFor(x => x.CariId, (List<SelectListItem>)ViewBag.carilerSatis, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Cariler.CariAd, new { @id = "cariDropDownLabel" })
+    @Html.DropDownListFor(x => x.CariId, (List<SelectListItem>)ViewBag.carilerSatis, "Cari seçiniz", new { @class = "form-control", @id = "cariDropDown" })
+    <span id="cariDropDownError" class="error-message" style="color: red;"></span>
     <br />
-    @Html.LabelFor(x => x.Personel.PersonelAd)
-    @Html.DropDownListFor(x => x.PersonelId, (List<SelectListItem>)ViewBag.personellerSatis, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Personel.PersonelAd, new { @id = "personelDropDownLabel" })
+    @Html.DropDownListFor(x => x.PersonelId, (List<SelectListItem>)ViewBag.personellerSatis, "Personel seçiniz", new { @class = "form-control", @id = "personelDropDown" })
+    <span id="personelDropDownError" class="error-message" style="color: red;"></span>
     <br />
-    @Html.LabelFor(x => x.Urun.UrunAd)
-    @Html.DropDownListFor(x => x.UrunId, (List<SelectListItem>)ViewBag.urunlerSatis, new { @class = "form-control" })
+    @Html.LabelFor(x => x.Urun.UrunAd, new { @id = "urunDropDownLabel" })
+    @Html.DropDownListFor(x => x.UrunId, (List<SelectListItem>)ViewBag.urunlerSatis, "Ürün seçiniz", new { @class = "form-control", @id = "urunDropDown" })
+    <span id="urunDropDownError" class="error-message" style="color: red;"></span>
     <br />
     <button class="btn btn-primary">Satış Yap</button>
 </form>
+
+<script>
+    $(document).ready(function () {
+        $("#cariDropDown").on("blur", function () {
+            validateCari();
+        });
+
+        $("#personelDropDown").on("blur", function () {
+            validatePersonel();
+        });
+
+        $("#urunDropDown").on("blur", function () {
+            validateUrun();
+        });
+
+        $("#myForm").submit(function (event) {
+            if (!validateCari()) {
+                event.preventDefault(); // Formun gönderilmesini engelle
+            }
+            if (!validatePersonel()) {
+                event.preventDefault();
+            }
+            if (!validateUrun()) {
+                event.preventDefault();
+            }
+        });
+
+        function validateCari() {
+            var cari = $("#cariDropDown");
+            var cariValue = cari.val();
+            var cariLabel = $("#cariDropDownLabel");
+            var cariError = $("#cariDropDownError");
+            console.log(`${cariValue}`)
+            cariError.text("");
+            cari.css("border-color", "black");
+            cariLabel.css("color", "black");
+
+            if (cariValue === ``) {
+                cariError.text("Lütfen cari seçiniz.");
+                cari.css("border-color", "red");
+                cariLabel.css("color", "red");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validatePersonel() {
+            var Personel = $("#PersonelDropDown");
+            var PersonelValue = Personel.val();
+            var PersonelLabel = $("#PersonelDropDownLabel");
+            var PersonelError = $("#PersonelDropDownError");
+
+            PersonelError.text("");
+            Personel.css("border-color", "black");
+            PersonelLabel.css("color", "black");
+
+            if (PersonelValue === ``) {
+                PersonelError.text("Lütfen cari seçiniz.");
+                Personel.css("border-color", "red");
+                PersonelLabel.css("color", "red");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateUrun() {
+            var Urun = $("#UrunDropDown");
+            var UrunValue = Urun.val();
+            var UrunLabel = $("#UrunDropDownLabel");
+            var UrunError = $("#UrunDropDownError");
+
+            UrunError.text("");
+            Urun.css("border-color", "black");
+            UrunLabel.css("color", "black");
+
+            if (UrunValue === ``) {
+                UrunError.text("Lütfen cari seçiniz.");
+                Urun.css("border-color", "red");
+                UrunLabel.css("color", "red");
+                return false;
+            }
+
+            return true;
+        }
+    });
+</script>
 
