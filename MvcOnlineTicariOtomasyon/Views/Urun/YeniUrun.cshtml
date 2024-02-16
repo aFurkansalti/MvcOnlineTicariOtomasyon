@@ -30,13 +30,13 @@
     <br />
     @Html.LabelFor(x => x.AlisFiyat, new { @id = "alisFiyatLabel" })
     @Html.TextBoxFor(x => x.AlisFiyat, new { @class = "fiyat form-control", @type = "text", @id = "alisFiyatTextBox" })
-    @*<span id="alisFiyatError" class="error-message" style="color: red;"></span>*@
+    @*<span id="alisFiyatError" class="fiyat-span error-message" style="color: red;"></span>*@
     @Html.ValidationMessageFor(x => x.AlisFiyat, "", new { @class = "text-danger" })
     <br />
     @Html.LabelFor(x => x.SatisFiyat, new { @id = "satisFiyatLabel" })
     @Html.TextBoxFor(x => x.SatisFiyat, new { @class = "fiyat form-control", @id = "satisFiyatTextBox", @type = "text" })
     @Html.ValidationMessageFor(x => x.SatisFiyat, "", new { @class = "text-danger" })
-    @*<span id="satisFiyatError" class="error-message" style="color: red;"></span>*@
+    @*<span id="satisFiyatError" class="fiyat-span error-message" style="color: red;"></span>*@
     <br />
     @Html.LabelFor(x => x.Kategori.KategoriId)
     @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.kategoriList, new { @class = "form-control" })
@@ -45,7 +45,7 @@
     <br />
     @Html.LabelFor(x => x.UrunGorsel)
     @Html.TextBoxFor(x => x.UrunGorsel, new { @class = "form-control-file", @type = "file" })
-    @Html.ValidationMessageFor(x => x.UrunGorsel, "", new { @class = "text-danger", @required = "required" })
+    @Html.ValidationMessageFor(x => x.UrunGorsel, "", new { @class = "text-danger" })
     <br />
     <button id="submitButton" class="btn btn-success mr-2">Kaydet</button>
     <a href="/Urun/Index" class="btn btn-danger">İptal</a>
@@ -55,20 +55,18 @@
 <script>
     $(document).ready(function () {
         $('#submitButton').click(function () {
-
             var fiyatValue = $('.fiyat').val();
 
             // Fiyat değerini doğru formatta kontrol et
-            if (!isValidPriceFormat(fiyatValue)) {
+            if (!isValidPriceFormat(fiyatValue) && fiyatValue !== "") {
                 alert('Geçersiz fiyat formatı. Sadece sayılar ve virgül kullanabilirsiniz.');
                 return false; // Formun gönderilmesini engeller
             }
-
         });
 
         function isValidPriceFormat(price) {
 
-            var regex = /^[0-9]+(,[0-9]{1,2})?$/;
+            var regex = /^[0-9]+([,][0-9]{1,2})?$/;
 
             return regex.test(price);
         }

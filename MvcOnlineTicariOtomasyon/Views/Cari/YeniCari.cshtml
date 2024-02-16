@@ -27,10 +27,11 @@
         @Html.ValidationMessageFor(x => x.CariMail, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.CariSifre)
-        @Html.TextBoxFor(x => x.CariSifre, new { @class = "form-control", @type = "password"})
+        @Html.TextBoxFor(x => x.CariSifre, new { @class = "form-control", @type = "password" })
         @Html.ValidationMessageFor(x => x.CariSifre, "", new { @style = "color:red" })
     </div>
     <button type="submit" class="btn btn-success">Kaydet</button>
+    <a href="/Cari/Index" class="btn btn-danger">İptal</a>
 }
 
 

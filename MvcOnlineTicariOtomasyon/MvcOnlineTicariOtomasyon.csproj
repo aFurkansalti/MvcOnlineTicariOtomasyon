@@ -240,6 +240,18 @@
     <Compile Include="Migrations\202402151334250_mig_addedRequiredinUrun.designer.cs">
       <DependentUpon>202402151334250_mig_addedRequiredinUrun.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402160849461_mig_addedPersonelRequired.cs" />
+    <Compile Include="Migrations\202402160849461_mig_addedPersonelRequired.designer.cs">
+      <DependentUpon>202402160849461_mig_addedPersonelRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402161145146_mig_deletedRequiredPersonelImage.cs" />
+    <Compile Include="Migrations\202402161145146_mig_deletedRequiredPersonelImage.designer.cs">
+      <DependentUpon>202402161145146_mig_deletedRequiredPersonelImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402161324384_mig_unknown.cs" />
+    <Compile Include="Migrations\202402161324384_mig_unknown.designer.cs">
+      <DependentUpon>202402161324384_mig_unknown.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
@@ -2261,8 +2273,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\6702518.jpg" />
     <Content Include="Image\8077066.jpg.jpg" />
     <Content Include="Image\83639454_8 Professional-Women-Resize-1.jpg.jpg" />
+    <Content Include="Image\user-front-side-with-white-background.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -3199,6 +3213,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402151334250_mig_addedRequiredinUrun.resx">
       <DependentUpon>202402151334250_mig_addedRequiredinUrun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402160849461_mig_addedPersonelRequired.resx">
+      <DependentUpon>202402160849461_mig_addedPersonelRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402161145146_mig_deletedRequiredPersonelImage.resx">
+      <DependentUpon>202402161145146_mig_deletedRequiredPersonelImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402161324384_mig_unknown.resx">
+      <DependentUpon>202402161324384_mig_unknown.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

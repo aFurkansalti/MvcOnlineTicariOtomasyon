@@ -29,6 +29,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
             if (!ModelState.IsValid)
             {
+                DropdownListItems();
                 return View("YeniSatis");
             }
             satisHareket.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString()); 
@@ -48,6 +49,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult SatisGuncelle(SatisHareket satisHareket_prm)
         {
+            if (!ModelState.IsValid)
+            {
+                DropdownListItems();
+                return View("SatisGetir", satisHareket_prm.SatisId);
+            }
             var satisHareket_ctx = context.SatisHarekets.Find(satisHareket_prm.SatisId);
             satisHareket_ctx.Adet = satisHareket_prm.Adet;
             satisHareket_ctx.Fiyat = satisHareket_prm.Fiyat;

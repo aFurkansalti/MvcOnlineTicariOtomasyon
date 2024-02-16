@@ -69,6 +69,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult FaturaGuncelle(Faturalar fatura_prm)
         {
+            if (!ModelState.IsValid)
+            {
+                this.DropdownListTeslim();
+                return View("FaturaGetir", fatura_prm.FaturaId);
+            }
             var fatura_ctx = context.Faturalars.Find(fatura_prm.FaturaId);
             fatura_ctx.FaturaSeriNo = fatura_prm.FaturaSeriNo;
             fatura_ctx.FaturaSiraNo = fatura_prm.FaturaSiraNo;

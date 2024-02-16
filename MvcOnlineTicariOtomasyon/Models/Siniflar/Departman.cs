@@ -12,6 +12,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int DepartmanId { get; set; }
 
+        [Required(ErrorMessage = "Boş geçilmez!")]
         [Display(Name = "Departman Adı")]
         [Column(TypeName = "Varchar")]
         [StringLength(30)]

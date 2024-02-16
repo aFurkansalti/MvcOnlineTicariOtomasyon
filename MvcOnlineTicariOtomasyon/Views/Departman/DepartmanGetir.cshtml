@@ -13,8 +13,10 @@
         @Html.HiddenFor(x => x.DepartmanId)
         @Html.LabelFor(x => x.DepartmanAd)
         @Html.TextBoxFor(x => x.DepartmanAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.DepartmanAd, "", new { @style = "color: red;" }) 
     </div>
     <button class="btn btn-success">Kaydet</button>
+    <a href="/Departman/Index" class="btn btn-danger">İptal</a>
 }
 
     

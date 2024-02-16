@@ -12,13 +12,13 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int CariId { get; set; }
 
-        [Display(Name = "Cari Adı")]
+        [Display(Name = "Müşteri Adı")]
         [Column(TypeName = "Varchar")]
         [StringLength(30, ErrorMessage = "En fazla 30 karakter yazabilirsiniz!")]
         [Required(ErrorMessage = "Bu alanı boş geçemezsiniz!")]
         public string CariAd { get; set; }
 
-        [Display(Name = "Cari Soyadı")]
+        [Display(Name = "Müşteri Soyadı")]
         [Column(TypeName = "Varchar")]
         [StringLength(30, ErrorMessage = "En fazla 30 karakter yazabilirsiniz!")]
         [Required(ErrorMessage = "Bu alanı boş geçemezsiniz!")]

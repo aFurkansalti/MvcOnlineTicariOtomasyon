@@ -13,11 +13,13 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int PersonelId { get; set; }
 
+        [Required(ErrorMessage = "Boş geçilmez!")]
         [Display(Name = "Personel Adı")]
         [Column(TypeName = "varchar")]
         [StringLength(30)]
         public string PersonelAd { get; set; }
 
+        [Required(ErrorMessage = "Boş geçilmez!")]
         [Display(Name = "Personel Soyadı")]
         [Column(TypeName = "varchar")]
         [StringLength(30)]
@@ -29,6 +31,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         public string PersonelGorsel { get; set; }
         public virtual ICollection<SatisHareket> SatisHarekets { get; set; }
         public virtual Departman Departman { get; set; }
+
+        [Required(ErrorMessage = "Lütfen seçiniz!")]
         public int DepartmanId { get; set; }
     }
 }

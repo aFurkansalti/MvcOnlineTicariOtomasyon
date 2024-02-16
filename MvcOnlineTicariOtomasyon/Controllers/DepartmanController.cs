@@ -27,6 +27,10 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult DepartmanEkle(Departman departman)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("DepartmanEkle");
+            }
             departman.Durum = true;
             context.Departmans.Add(departman);
             context.SaveChanges();
@@ -50,6 +54,10 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult DepartmanGuncelle(Departman prm_departman)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("DepartmanGetir");
+            }
             var ctx_departman = context.Departmans.Find(prm_departman.DepartmanId);
             ctx_departman.DepartmanAd = prm_departman.DepartmanAd;
             context.SaveChanges();

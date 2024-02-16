@@ -43,7 +43,7 @@
     <br />
     @Html.LabelFor(x => x.UrunGorsel)
     @Html.TextBoxFor(x => x.UrunGorsel, new { @class = "form-control-file", @type = "file" })
-    @Html.ValidationMessageFor(x => x.UrunGorsel, "", new { @class = "text-danger", @required = "required" })
+    @Html.ValidationMessageFor(x => x.UrunGorsel, "", new { @class = "text-danger" })
     <br />
     <button id="submitButton" class="btn btn-success mr-2">Kaydet</button>
     <a href="/Urun/Index" class="btn btn-danger">İptal</a>
@@ -66,7 +66,7 @@
 
         function isValidPriceFormat(price) {
 
-            var regex = /^[0-9]+(,[0-9]{1,2})?$/;
+            var regex = /^[0-9]+([,][0-9]{1,2})?$/;
 
             return regex.test(price);
         }

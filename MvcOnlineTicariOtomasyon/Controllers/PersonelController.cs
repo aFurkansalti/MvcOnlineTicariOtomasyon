@@ -21,26 +21,29 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpGet]
         public ActionResult PersonelEkle() 
         {
-            List<SelectListItem> departmanlar = (from x in context.Departmans.ToList()
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.DepartmanAd,
-                                                     Value = x.DepartmanId.ToString()
-                                                 }).ToList();
-            ViewBag.departmanlar = departmanlar;
+            this.DropdownListOfDepartman();
             return View();
         }
 
         [HttpPost]
         public ActionResult PersonelEkle(Personel personel)
         {
-            if (Request.Files.Count > 0)
+            if (!ModelState.IsValid)
+            {
+                this.DropdownListOfDepartman();
+                return View("PersonelEkle");
+            }
+
+            var resimFileCount = personel.PersonelGorsel == null ? 0 : Request.Files.Count;
+            if (resimFileCount > 0)
             {
                 string dosyaadi = Path.GetFileName(Request.Files[0].FileName);
                 string uzanti = Path.GetExtension(Request.Files[0].FileName);
                 string yol = "~/Image/" + dosyaadi + uzanti;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 personel.PersonelGorsel = "/Image/" + dosyaadi + uzanti;
+            } else {
+                personel.PersonelGorsel = "/Image/user-front-side-with-white-background.jpg";
             }
             context.Personels.Add(personel);
             context.SaveChanges();
@@ -49,13 +52,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
 
         public ActionResult PersonelGetir(int id)
         {
-            List<SelectListItem> departmanlar = (from x in context.Departmans.ToList()
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.DepartmanAd,
-                                                     Value = x.DepartmanId.ToString()
-                                                 }).ToList();
-            ViewBag.departmanList = departmanlar;
+            this.DropdownListOfDepartman();
             var personel = context.Personels.Find(id);
             return View("PersonelGetir", personel);
         }
@@ -63,15 +60,34 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult PersonelGuncelle(Personel personel_prm)
         {
-            if (Request.Files.Count > 0)
+            if (!ModelState.IsValid)
+            {
+                this.DropdownListOfDepartman();
+
+                // Hataları model state'e ekleyerek gönder
+                var errorList = ModelState.Values.SelectMany(v => v.Errors).ToList();
+
+                foreach (var error in errorList)
+                {
+                    ModelState.AddModelError("", error.ErrorMessage);
+                }
+
+                // UrunGetir'e geri dön
+                return View("UrunGetir", personel_prm);
+            }
+
+            var personel_ctx = context.Personels.Find(personel_prm.PersonelId);
+            var resimFileCount = personel_prm.PersonelGorsel == null ? 0 : Request.Files.Count;
+            if (resimFileCount > 0)
             {
                 string dosyaadi = Path.GetFileName(Request.Files[0].FileName);
                 string uzanti = Path.GetExtension(Request.Files[0].FileName);
                 string yol = "~/Image/" + dosyaadi + uzanti;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
-                personel_prm.PersonelGorsel = "/Image/" + dosyaadi + uzanti;
+                personel_ctx.PersonelGorsel = "/Image/" + dosyaadi + uzanti;
+            } else {
+                personel_ctx.PersonelGorsel = "/Image/user-front-side-with-white-background.jpg";
             }
-            var personel_ctx = context.Personels.Find(personel_prm.PersonelId);
             personel_ctx.PersonelAd = personel_prm.PersonelAd;
             personel_ctx.PersonelSoyad = personel_prm.PersonelSoyad;
             personel_ctx.PersonelGorsel = personel_prm.PersonelGorsel;
@@ -84,6 +100,17 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         {
             var personeller = context.Personels.ToList();
             return View(personeller);
+        }
+
+        private void DropdownListOfDepartman()
+        {
+            List<SelectListItem> departmanlar = (from x in context.Departmans.ToList()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.DepartmanAd,
+                                                     Value = x.DepartmanId.ToString()
+                                                 }).ToList();
+            ViewBag.departmanlar = departmanlar;
         }
     }
 }

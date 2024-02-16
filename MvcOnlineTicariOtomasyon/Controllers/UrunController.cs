@@ -74,6 +74,8 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                 string yol = "~/Image/" + dosyaadi + uzanti;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 urun.UrunGorsel = "/Image/" + dosyaadi + uzanti;
+            } else {
+                urun.UrunGorsel = "/Image/6702518.jpg";
             }
 
             urun.Durum = true;
@@ -115,7 +117,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             //if (!ModelState.IsValid)
             //{
             //    this.DropdownListOfKategori();
-            //    //return View("UrunGetir");
+            //    return View("UrunGetir");
             //    return View(UrunGetir(urun_prm.UrunId));
             //}
 
@@ -150,6 +152,8 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                 string yol = "~/Image/" + dosyaadi + uzanti;
                 Request.Files[0].SaveAs(Server.MapPath(yol));
                 urun_ctx.UrunGorsel = "/Image/" + dosyaadi + uzanti;
+            } else {
+                urun_ctx.UrunGorsel = "/Image/6702518.jpg";
             }
 
             urun_ctx.KategoriId = urun_prm.KategoriId;

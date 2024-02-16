@@ -13,16 +13,20 @@
         @Html.HiddenFor(x => x.PersonelId)
         @Html.LabelFor(x => x.PersonelAd)
         @Html.TextBoxFor(x => x.PersonelAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PersonelAd, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.PersonelSoyad)
         @Html.TextBoxFor(x => x.PersonelSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PersonelSoyad, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.PersonelGorsel)
         @*@Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })*@
         <input type="file" name="PersonelGorsel" />
+        @Html.ValidationMessageFor(x => x.PersonelGorsel, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.Departman.DepartmanAd)
         @Html.DropDownListFor(x => x.DepartmanId, (List<SelectListItem>)ViewBag.departmanList, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Departman, "", new { @style = "color:red" })
         <br />
         <button class="btn btn-default" style="background-color: yellowgreen">Güncelle</button>
     </div>
