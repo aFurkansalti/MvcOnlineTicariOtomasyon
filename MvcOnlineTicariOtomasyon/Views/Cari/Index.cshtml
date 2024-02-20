@@ -18,6 +18,7 @@
         <td>Soyad</td>
         <td>Şehir</td>
         <td>Mail</td>
+        <td>Resim</td>
         <td>Sil</td>
         <td>Güncelle</td>
         <td>Detaylar</td>
@@ -30,6 +31,7 @@
             <td>@cari.CariSoyad</td>
             <td>@cari.CariSehir</td>
             <td>@cari.CariMail</td>
+            <td><img class="profile-user-img img-fluid img-circle" src="@cari.MusteriResmi" alt="User profile picture" height="50" width="50"/></td>
             @*<td><a href="/Cari/CariSil/@cari.CariId" id="silButton" class="btn btn-danger" onclick="sweetAlertShow(@cari.CariId)">Sil</a></td>*@
             @*<td><button id="silButton" class="btn btn-danger" onclick="$(document).ready(sweetAlertShow(@cari.CariId))">Sil</button></td>*@
             <td>@Html.ActionLink("Sil", "CariSil", new { @id = cari.CariId }, new { @class="btn btn-danger", @onclick="return confirm('Cari listeden kaldırılacaktır!')" })</td>

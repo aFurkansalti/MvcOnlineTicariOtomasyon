@@ -2,27 +2,29 @@
 @model List<KargoTakip>
 
 @{
-    ViewBag.Title = "KargoTakip";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "CariKargoTakip";
+    Layout = "~/Views/Shared/_CariLayout.cshtml";
+    int count = 0;
 }
 
-<h2>KargoTakip</h2>
+<br />
+<h4>Kargo Takip Kodu: @ViewBag.KargoTakipKodu</h4>
+<br />
 
 <table class="table table-bordered">
     <tr>
-        <th>Takip Kodu</th>
+        <th>İşlem</th>
         <th>Açıklama</th>
         <th>Tarih</th>
     </tr>
     @foreach (var takip in Model)
     {
+        ++count;
         <tr>
-            <td>@takip.TakipKodu</td>
+            <td>@count. adım</td>
             <td>@takip.Aciklama</td>
             <td>@takip.Tarih</td>
         </tr>
     }
 </table>
-
-
 

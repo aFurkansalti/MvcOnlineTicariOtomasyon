@@ -23,7 +23,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var urunler = from x in context.Uruns select x;
             if (!string.IsNullOrEmpty(prm_urunAd))
             {
-                urunler = urunler.Where(urun => urun.UrunAd.Contains(prm_urunAd) && urun.Durum == true);
+                urunler = urunler.Where(urun => urun.UrunAd.Contains(prm_urunAd.TrimEnd().TrimStart()) && urun.Durum == true);
             } else {
                 urunler = urunler.Where(urun => urun.Durum == true);
             }

@@ -28,7 +28,11 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [StringLength(2000)]
         public string Icerik { get; set; }
 
-        [Column(TypeName = "Smalldatetime")]
+        [Column(TypeName = "Date")]
         public DateTime Tarih { get; set; }
+
+        [Column(TypeName = "Char")]
+        [StringLength(5)]
+        public string Saat { get; set; }
     }
 }

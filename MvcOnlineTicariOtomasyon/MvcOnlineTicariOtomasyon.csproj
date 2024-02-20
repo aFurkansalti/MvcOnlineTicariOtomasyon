@@ -149,6 +149,7 @@
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\CariPanelController.cs" />
     <Compile Include="Controllers\DepartmanController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FaturaController.cs" />
     <Compile Include="Controllers\GaleriController.cs" />
     <Compile Include="Controllers\GrafikController.cs" />
@@ -251,6 +252,18 @@
     <Compile Include="Migrations\202402161324384_mig_unknown.cs" />
     <Compile Include="Migrations\202402161324384_mig_unknown.designer.cs">
       <DependentUpon>202402161324384_mig_unknown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402161412527_mig_changeToKargo.cs" />
+    <Compile Include="Migrations\202402161412527_mig_changeToKargo.designer.cs">
+      <DependentUpon>202402161412527_mig_changeToKargo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402200641543_mig_saatAddedInMesajlar.cs" />
+    <Compile Include="Migrations\202402200641543_mig_saatAddedInMesajlar.designer.cs">
+      <DependentUpon>202402200641543_mig_saatAddedInMesajlar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402200702085_mig_resimAddedInCariler.cs" />
+    <Compile Include="Migrations\202402200702085_mig_resimAddedInCariler.designer.cs">
+      <DependentUpon>202402200702085_mig_resimAddedInCariler.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
@@ -2276,6 +2289,7 @@
     <Content Include="Image\6702518.jpg" />
     <Content Include="Image\8077066.jpg.jpg" />
     <Content Include="Image\83639454_8 Professional-Women-Resize-1.jpg.jpg" />
+    <Content Include="Image\text-message-icon.png" />
     <Content Include="Image\user-front-side-with-white-background.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -3143,12 +3157,17 @@
     <Content Include="Views\ResmiTatil\Index.cshtml" />
     <Content Include="Views\ResmiTatil\TatilEkle.cshtml" />
     <Content Include="Views\ResmiTatil\TatilGetir.cshtml" />
+    <Content Include="Views\CariPanel\KargoTakip.cshtml" />
+    <Content Include="Views\CariPanel\CariKargoTakip.cshtml" />
+    <Content Include="Views\CariPanel\SettingsPartial.cshtml" />
+    <Content Include="Views\CariPanel\DuyurularPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />
     <Folder Include="AdminLTE-3.0.4\docs\assets\img\" />
     <Folder Include="AdminLTE-3.0.4\plugins\jquery-ui\images\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Error\" />
     <Folder Include="Views\Mesaj\" />
   </ItemGroup>
   <ItemGroup>
@@ -3222,6 +3241,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402161324384_mig_unknown.resx">
       <DependentUpon>202402161324384_mig_unknown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402161412527_mig_changeToKargo.resx">
+      <DependentUpon>202402161412527_mig_changeToKargo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402200641543_mig_saatAddedInMesajlar.resx">
+      <DependentUpon>202402200641543_mig_saatAddedInMesajlar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402200702085_mig_resimAddedInCariler.resx">
+      <DependentUpon>202402200702085_mig_resimAddedInCariler.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

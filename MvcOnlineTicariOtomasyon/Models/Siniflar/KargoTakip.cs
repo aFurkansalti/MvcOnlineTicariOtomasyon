@@ -12,6 +12,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Key]
         public int KargoTakipId { get; set; }
 
+        [Required(ErrorMessage = "Boş geçilmez!")]
         [Column(TypeName = "VarChar")]
         [StringLength(10)]
         public string TakipKodu { get; set; }
@@ -19,6 +20,8 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Column(TypeName = "VarChar")]
         [StringLength(100)]
         public string Aciklama { get; set; }
+        
+        [Required(ErrorMessage = "Boş geçilmez!")]
         public DateTime Tarih { get; set; }
     }
 }

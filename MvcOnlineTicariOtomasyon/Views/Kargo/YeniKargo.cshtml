@@ -9,19 +9,26 @@
 <br />
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.TakipKodu)
-    <input type="text" value="@ViewBag.takipKod" class="form-control" name="TakipKodu" readonly/>
+    @*<input type="text" value="@ViewBag.takipKod" class="form-control" name="TakipKodu" readonly/>*@
+    @Html.TextBoxFor(x => x.TakipKodu, new { @class = "form-control", @value = ViewBag.takipKod, @readonly = "readonly" })
+    @Html.ValidationMessageFor(x => x.TakipKodu, "", new { @style = "color: red;" })
     <br />
     @Html.LabelFor(x => x.Personel)
     @Html.TextBoxFor(x => x.Personel, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Personel, "", new { @style = "color: red;" })
     <br />
     @Html.LabelFor(x => x.Alici)
     @Html.TextBoxFor(x => x.Alici, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Alici, "", new { @style = "color: red;" })
     <br />
     @Html.LabelFor(x => x.Tarih)
-    <input type="date" class="form-control" name="Tarih" />   
+    @*<input type="date" class="form-control" name="Tarih" />*@
+    @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control", type = "date" })
+    @Html.ValidationMessageFor(x => x.Tarih, "", new { @style = "color: red;" })
     <br />
     @Html.LabelFor(x => x.Aciklama)
     @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Aciklama, "", new { @style = "color: red;" })
     <br />
     <button class="btn btn-info">Kaydet</button>
 </form>

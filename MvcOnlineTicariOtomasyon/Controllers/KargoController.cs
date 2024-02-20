@@ -17,7 +17,8 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var kargoDetaylar = from x in context.KargoDetays select x;
             if (!string.IsNullOrEmpty(prm_kargoTakipKod))
             {
-                kargoDetaylar = kargoDetaylar.Where(kargoDetay => kargoDetay.TakipKodu == prm_kargoTakipKod.TrimEnd().TrimStart());
+                //kargoDetaylar = kargoDetaylar.Where(kargoDetay => kargoDetay.TakipKodu == prm_kargoTakipKod.TrimEnd().TrimStart());
+                kargoDetaylar = kargoDetaylar.Where(kargoDetay => kargoDetay.TakipKodu.Contains(prm_kargoTakipKod.TrimEnd().TrimStart()));
             }
             
             return View(kargoDetaylar.ToList());
@@ -44,6 +45,10 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult YeniKargo(KargoDetay kargoDetay)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
             context.KargoDetays.Add(kargoDetay);
             context.SaveChanges();
             return RedirectToAction("Index");

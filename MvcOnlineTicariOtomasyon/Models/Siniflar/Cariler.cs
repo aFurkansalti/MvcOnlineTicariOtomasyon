@@ -41,6 +41,11 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [StringLength(20, ErrorMessage = "En fazla 20 karakter yazabilirsiniz!")]
         [Required(ErrorMessage = "Bu alanı boş geçemezsiniz!")]
         public string CariSifre { get; set; }
+
+        [Display(Name = "Resim")]
+        [Column(TypeName = "Varchar")]
+        [StringLength(100)]
+        public string MusteriResmi { get; set; }
         public bool Durum { get; set; }
         public virtual ICollection<SatisHareket> SatisHarekets { get; set; }
     }

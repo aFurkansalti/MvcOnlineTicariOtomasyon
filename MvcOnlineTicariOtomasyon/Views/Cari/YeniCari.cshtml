@@ -7,7 +7,7 @@
 
 <h2 class="my-4">Yeni Cari Ekle</h2>
 
-@using (Html.BeginForm("YeniCari", "Cari", FormMethod.Post))
+@using (Html.BeginForm("YeniCari", "Cari", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         @Html.LabelFor(x => x.CariAd)
@@ -21,6 +21,10 @@
         @Html.LabelFor(x => x.CariSehir)
         @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color:red" })
+        <br />
+        @Html.LabelFor(x => x.MusteriResmi)
+        @Html.TextBoxFor(x => x.MusteriResmi, new { @class = "form-control-file", @type = "file" })
+        @Html.ValidationMessageFor(x => x.MusteriResmi, "", new { @style = "color:red" })
         <br />
         @Html.LabelFor(x => x.CariMail)
         @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control" })
