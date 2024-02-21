@@ -18,7 +18,6 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         public ActionResult Index()
         {
             var mail = (string)Session["CariMail"];
-            var degerler = context.Mesajlars.Where(x => x.Alici == mail).ToList();
             ViewBag.CariMail = mail;
             var adSoyad = context.Cariler.Where(x => x.CariMail == mail).Select(y => y.CariAd + " " + y.CariSoyad).FirstOrDefault();
             ViewBag.CariAdSoyad = adSoyad;
@@ -30,10 +29,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             ViewBag.ToplamSatis = toplamSatis;
             var toplamTutar = context.SatisHarekets.Where(x => x.CariId == cariIdByMail).Sum(y => y.ToplamTutar);
             ViewBag.ToplamTutar = toplamTutar;
-            var toplamAdet = context.SatisHarekets.Where(x => x.CariId == cariIdByMail).Sum(y => y.Adet);
+            decimal? toplamAdet = context.SatisHarekets.Where(x => x.CariId == cariIdByMail).Sum(y => y.Adet);
             ViewBag.ToplamAdet = toplamAdet;
             var resim = context.Cariler.Where(x => x.CariMail == mail).Select(y => y.MusteriResmi).FirstOrDefault();
             ViewBag.Resim = resim;
+            var degerler = context.Mesajlars.Where(x => x.Alici == mail).ToList();
             return View(degerler);
         }
 
@@ -133,6 +133,11 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult CariBilgiGuncelle(Cariler cari_prm)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
+
             var cari_ctx = context.Cariler.Find(cari_prm.CariId);
 
             var resimFile = cari_prm.MusteriResmi == null ? 0 : Request.Files.Count;

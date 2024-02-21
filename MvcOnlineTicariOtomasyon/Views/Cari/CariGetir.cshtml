@@ -10,32 +10,33 @@
 @using (Html.BeginForm("CariGuncelle", "Cari", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true, "", new { @class = "text-danger", @style = "font-size:large" })
-    <div class="form-group">
-        @Html.HiddenFor(x => x.CariId)
-        @Html.LabelFor(x => x.CariAd)
-        @Html.TextBoxFor(x => x.CariAd, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.CariAd, "", new { @style = "color:red" })
-        <br />
-        @Html.LabelFor(x => x.CariSoyad)
-        @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color:red" })
-        <br />
-        @Html.LabelFor(x => x.MusteriResmi)
-        @Html.TextBoxFor(x => x.MusteriResmi, new { @class = "form-control-file", @type = "file" })
-        @Html.ValidationMessageFor(x => x.MusteriResmi, "", new { @style = "color:red" })
-        <br />
-        @Html.LabelFor(x => x.CariSehir)
-        @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.CariMail)
-        @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.CariSifre)
-        @Html.TextBoxFor(x => x.CariSifre, new { @class = "form-control", @type = "password" })
-        @Html.ValidationMessageFor(x => x.CariSifre, "", new { @style = "color:red" })
-        <br />
-        <button class="btn btn-default" style="background-color: yellowgreen;">Güncelle</button>
-        <a href="/Cari/Index" class="btn btn-danger">İptal</a>
-    </div>
+<div class="form-group">
+    @Html.HiddenFor(x => x.CariId)
+    @Html.LabelFor(x => x.CariAd)
+    @Html.TextBoxFor(x => x.CariAd, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariAd, "", new { @style = "color:red" })
+    <br />
+    @Html.LabelFor(x => x.CariSoyad)
+    @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color:red" })
+    <br />
+    @Html.LabelFor(x => x.MusteriResmi)
+    @Html.TextBoxFor(x => x.MusteriResmi, new { @class = "form-control-file", @type = "file" })
+    <br />
+    @Html.LabelFor(x => x.CariSehir)
+    @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color:red" })
+    <br />
+    @Html.LabelFor(x => x.CariMail)
+    @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariMail, "", new { @style = "color:red" })
+    <br />
+    @Html.LabelFor(x => x.CariSifre)
+    @Html.TextBoxFor(x => x.CariSifre, new { @class = "form-control", @type = "password" })
+    @Html.ValidationMessageFor(x => x.CariSifre, "", new { @style = "color:red" })
+    <br />
+    <button class="btn btn-default" style="background-color: yellowgreen;">Güncelle</button>
+    <a href="/Cari/Index" class="btn btn-danger">İptal</a>
+</div>
 }
 

@@ -16,14 +16,14 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         public DateTime Tarih { get; set; }
 
         [Required(ErrorMessage = "Adeti boş geçemezsiniz.")]
-        public int Adet { get; set; }
+        public int? Adet { get; set; }
 
         [Required(ErrorMessage = "Fiyatı boş geçemezsiniz.")]
-        public decimal Fiyat { get; set; }
+        public decimal? Fiyat { get; set; }
 
         [Display(Name = "Toplam Tutar")]
         [Required(ErrorMessage = "Toplam tutarı boş geçemezsiniz.")]
-        public decimal ToplamTutar { get; set; }
+        public decimal? ToplamTutar { get; set; }
 
         public int UrunId { get; set; }
         public int CariId { get; set; }

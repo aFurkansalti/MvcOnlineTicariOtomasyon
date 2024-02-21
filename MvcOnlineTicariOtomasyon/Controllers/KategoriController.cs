@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using MvcOnlineTicariOtomasyon.Models.Siniflar.Model_Classes;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
@@ -69,6 +70,17 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                 bulunanKategori.KategoriAd = kategori.KategoriAd;
                 context.SaveChanges();
                 return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult KategoriyeGoreUrunler()
+        {
+            using (Context context = new Context())
+            {
+                KategeoriyeGoreUrunModelClass modelClass = new KategeoriyeGoreUrunModelClass();
+                modelClass.Kategoriler = new SelectList(context.Kategoris, "KategoriId", "KategoriAd");
+                modelClass.Urunler = new SelectList(context.Uruns, "UrunId", "UrunAd");
+                return View(modelClass);
             }
         }
     }

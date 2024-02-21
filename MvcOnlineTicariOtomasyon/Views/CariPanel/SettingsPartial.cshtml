@@ -1,26 +1,35 @@
 ﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
 @model Cariler
 
-@using (Html.BeginForm("CariBilgiGuncelle", "CariPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<script src="~/Content/js/jquery-1.11.2.js"></script>
+<script src="~/Content/js/jquery.validate.min.js"></script>
+<script src="~/Content/js/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("CariBilgiGuncelle", "CariPanel", FormMethod.Post, new { enctype = "multipart/form-data", @id = "yourFormId" }))
 {
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(x => x.CariId)
     <form class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group row">
             <label for="inputName" class="col-sm-2 col-form-label">İsim</label>
             <div class="col-sm-10">
                 @Html.TextBoxFor(x => x.CariAd, new { @class = "form-control", @id = "inputName", @placeholder = "Name" })
+                @Html.ValidationMessageFor(x => x.CariAd, "", new { @style = "color: red;" })
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEmail" class="col-sm-2 col-form-label">Soyisim</label>
             <div class="col-sm-10">
                 @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control", @id = "inputSurname", @placeholder = "Soyad" })
+                @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color: red;" })
             </div>
         </div>
         <div class="form-group row">
             <label for="inputName2" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
                 @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control", @id = "inputMail", @placeholder = "Mail", @type = "email" })
+                @Html.ValidationMessageFor(x => x.CariMail, "", new { @style = "color: red;" })
             </div>
         </div>
         <div class="form-group row">
@@ -33,12 +42,14 @@
             <label for="inputExperience" class="col-sm-2 col-form-label">Şehir</label>
             <div class="col-sm-10">
                 @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control", @id = "inputSehir", @placeholder = "Şehir" })
+                @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color: red;" })
             </div>
         </div>
         <div class="form-group row">
             <label for="inputSkills" class="col-sm-2 col-form-label">Şifre</label>
             <div class="col-sm-10">
                 @Html.TextBoxFor(x => x.CariSifre, new { @class = "form-control", @id = "inputPassword", @placeholder = "Şifre", @type = "password" })
+                @Html.ValidationMessageFor(x => x.CariSifre, "", new { @style = "color: red;" })
             </div>
         </div>
         <div class="form-group row">
@@ -52,8 +63,52 @@
         </div>
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
-                <button type="submit" class="btn btn-warning"  onclick="return confirm('Verileriniz güncellenecektir!')">Güncelle</button>
+                <button type="submit" class="btn btn-warning" onclick="return confirm('Verileriniz güncellenecektir!')">Güncelle</button>
             </div>
         </div>
     </form>
 }
+
+<script>
+    $(document).ready(function () {
+        $("#yourFormId").validate({
+            rules: {
+                CariAd: {
+                    required: true,
+                    // Diğer kuralları buraya ekleyebilirsiniz
+                },
+                CariSoyad: {
+                    required: true,
+                    // Diğer kuralları buraya ekleyebilirsiniz
+                },
+                CariMail: {
+                    required: true,
+                    email: true
+                    // Diğer kuralları buraya ekleyebilirsiniz
+                },
+                // Diğer alanlar için kuralları ekleyin
+            },
+            messages: {
+                CariAd: {
+                    required: "İsim alanı zorunludur."
+                    // Diğer hata mesajlarını buraya ekleyebilirsiniz
+                },
+                CariSoyad: {
+                    required: "Soyisim alanı zorunludur."
+                    // Diğer hata mesajlarını buraya ekleyebilirsiniz
+                },
+                CariMail: {
+                    required: "Email alanı zorunludur.",
+                    email: "Geçerli bir email adresi giriniz."
+                    // Diğer hata mesajlarını buraya ekleyebilirsiniz
+                },
+                // Diğer alanlar için hata mesajlarını ekleyin
+            },
+            errorElement: "span",
+            errorPlacement: function (error, element) {
+                error.addClass("text-danger");
+                error.insertAfter(element);
+            }
+        });
+    });
+</script>

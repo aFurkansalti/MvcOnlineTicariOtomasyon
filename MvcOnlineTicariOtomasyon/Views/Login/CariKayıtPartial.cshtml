@@ -1,18 +1,86 @@
-﻿<div class="login-form login-form-left">
+﻿@model MvcOnlineTicariOtomasyon.Models.Siniflar.Cariler
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@*<script src="~/Content/js/jquery-1.11.2.js"></script>
+<script src="~/Content/js/jquery.validate.min.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.js"></script>
+
+<div class="login-form login-form-left">
     <div class="agile-row">
         <h3>Yeni Cari Kaydı</h3>
         <div class="login-agileits-top">
-            <form method="post">
-                <input type="text" class="name" name="CariAd" Placeholder="Adınız" required="" />
-                <input type="text" class="name" name="CariSoyad" Placeholder="Soyadınız" required="" />
-                <input type="text" class="name" name="CariSehir" Placeholder="Şehir" required="" />
-                <input type="email" class="mail" name="CariMail" Placeholder="Mail Adresiniz" required="" />
-                <input type="password" class="password" name="CariSifre" Placeholder="Şifre" required="" />
-                <div class="login-check">
-                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i><a href="#">Kuralları okudum &amp; Kabul Ediyorum</a></label>
+            @*<form method="post">
+                    <input type="text" class="name" name="CariAd" Placeholder="Adınız" required="" />
+                    <input type="text" class="name" name="CariSoyad" Placeholder="Soyadınız" required="" />
+                    <input type="text" class="name" name="CariSehir" Placeholder="Şehir" required="" />
+                    <input type="file" class="name" name="MusteriResim" Placeholder="Resim" required="" />
+                    <input type="email" class="mail" name="CariMail" Placeholder="Mail Adresiniz" required="" />
+                    <input type="password" class="password" name="CariSifre" Placeholder="Şifre" required="" />
+                    <div class="login-check">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i><a href="#">Kuralları okudum &amp; Kabul Ediyorum</a></label>
+                    </div>
+                    <input type="submit" value="Kayıt Ol">
+                </form>*@
+            @using (Html.BeginForm("CariKayıtPartial", "Login", FormMethod.Post, new { enctype = "multipart/form-data", @id = "myFormId" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.CariAd, new { @class = "form-control", @id = "inputName", @placeholder = "İsim", style = "width: 300px" })
+                        @Html.ValidationMessageFor(x => x.CariAd, "", new { @style = "color: red;" })
+                    </div>
                 </div>
-                <input type="submit" value="Kayıt Ol">
-            </form>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control", @id = "inputSurname", @placeholder = "Soyisim", style = "width: 300px" })
+                        @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color: red;" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control", @id = "inputMail", @placeholder = "Mail", @type = "email", style = "width: 300px" })
+                        @Html.ValidationMessageFor(x => x.CariMail, "", new { @style = "color: red;" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        @Html.LabelFor(x => x.MusteriResmi)
+                        @Html.TextBoxFor(x => x.MusteriResmi, new { @class = "form-control-file", @id = "inputResim", @placeholder = "Resim", @type = "file", style = "width: 300px" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control", @id = "inputSehir", @placeholder = "Şehir", style = "width: 300px" })
+                        @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color: red;" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.CariSifre, new { @class = "form-control", @id = "inputPassword", @placeholder = "Şifre", @type = "password", style = "width: 300px" })
+                        @Html.ValidationMessageFor(x => x.CariSifre, "", new { @style = "color: red;" })
+                    </div>
+                </div>
+                <div class="login-check">
+                    <div class="offset-sm-2 col-sm-10">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i><a href="#">Kuralları okudum &amp; Kabul Ediyorum</a></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                        <button type="submit" class="btn btn-danger">Kayıt Ol</button>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+
+

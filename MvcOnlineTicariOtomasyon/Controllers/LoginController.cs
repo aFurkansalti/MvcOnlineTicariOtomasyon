@@ -1,6 +1,7 @@
 ﻿using MvcOnlineTicariOtomasyon.Models.Siniflar;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,6 +9,7 @@ using System.Web.Security;
 
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         Context context = new Context();
@@ -26,9 +28,30 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult CariKayıtPartial(Cariler cariler)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniCari");
+            }
+
+            var resimFile = cariler.MusteriResmi == null ? 0 : Request.Files.Count;
+
+            if (resimFile > 0)
+            {
+                string dosyaadi = Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Image/" + dosyaadi + uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                cariler.MusteriResmi = "/Image/" + dosyaadi + uzanti;
+            }
+            else
+            {
+                cariler.MusteriResmi = "/Image/user-front-side-with-white-background.jpg";
+            }
+
+            cariler.Durum = true;
             context.Cariler.Add(cariler);
             context.SaveChanges();
-            return View("Index", "Login");
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]

@@ -265,6 +265,10 @@
     <Compile Include="Migrations\202402200702085_mig_resimAddedInCariler.designer.cs">
       <DependentUpon>202402200702085_mig_resimAddedInCariler.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402211402174_mig_toplamTutarIsNullableAnymore.cs" />
+    <Compile Include="Migrations\202402211402174_mig_toplamTutarIsNullableAnymore.designer.cs">
+      <DependentUpon>202402211402174_mig_toplamTutarIsNullableAnymore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
@@ -280,6 +284,7 @@
     <Compile Include="Models\Siniflar\Faturalar.cs" />
     <Compile Include="Models\Siniflar\Gider.cs" />
     <Compile Include="Models\Siniflar\Kategori.cs" />
+    <Compile Include="Models\Siniflar\Model_Classes\KategeoriyeGoreUrunModelClass.cs" />
     <Compile Include="Models\Siniflar\Personel.cs" />
     <Compile Include="Models\Siniflar\Property\Saat.cs" />
     <Compile Include="Models\Siniflar\ResmiTatil.cs" />
@@ -3161,13 +3166,14 @@
     <Content Include="Views\CariPanel\CariKargoTakip.cshtml" />
     <Content Include="Views\CariPanel\SettingsPartial.cshtml" />
     <Content Include="Views\CariPanel\DuyurularPartial.cshtml" />
+    <Content Include="Views\Error\PageError.cshtml" />
+    <Content Include="Views\Kategori\KategoriyeGoreUrunler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE-3.0.4\dist\img\credit\" />
     <Folder Include="AdminLTE-3.0.4\docs\assets\img\" />
     <Folder Include="AdminLTE-3.0.4\plugins\jquery-ui\images\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Error\" />
     <Folder Include="Views\Mesaj\" />
   </ItemGroup>
   <ItemGroup>
@@ -3250,6 +3256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402200702085_mig_resimAddedInCariler.resx">
       <DependentUpon>202402200702085_mig_resimAddedInCariler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402211402174_mig_toplamTutarIsNullableAnymore.resx">
+      <DependentUpon>202402211402174_mig_toplamTutarIsNullableAnymore.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -34,6 +34,7 @@ namespace MvcOnlineTicariOtomasyon.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(50, ErrorMessage = "En fazla 50 karakter yazabilirsiniz!")]
         [Required(ErrorMessage = "Bu alanı boş geçemezsiniz!")]
+        [EmailAddress(ErrorMessage = "Geçerli bir e-posta adresi giriniz.")]
         public string CariMail { get; set; }
 
         [Display(Name = "Şifre")]
