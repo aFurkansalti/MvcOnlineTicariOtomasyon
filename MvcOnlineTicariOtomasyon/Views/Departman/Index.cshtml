@@ -25,5 +25,8 @@
         </tr>
     }
 </table>
-<a href="/Departman/DepartmanEkle" class="btn btn-primary">Departman Ekle</a>
+@if (User.IsInRole("A"))
+{
+    <a href="/Departman/DepartmanEkle" class="btn btn-primary">Departman Ekle</a>
+}
 

@@ -7,19 +7,45 @@
 
 <h2 class="my-4">Yeni Kalem Girişi</h2>
 
-<form class="form-group" method="post">
-    @Html.LabelFor(x => x.Aciklama)
-    @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
-    <br />
-    @Html.LabelFor(x => x.Miktar)
-    @Html.TextBoxFor(x => x.Miktar, new { @class = "form-control" })
-    <br />
-    @Html.LabelFor(x => x.BirimFiyat)
-    @Html.TextBoxFor(x => x.BirimFiyat, new { @class = "form-control" })
-    <br />
-    @Html.LabelFor(x => x.FaturaId)
-    @Html.TextBoxFor(x => x.FaturaId, new { @class = "form-control", @Value = Convert.ToString(@ViewBag.faturaId), @readonly = Convert.ToString(@ViewBag.faturaId) })
-    <br />
-    <button class="btn btn-success">Kaydet</button>
-</form>
+    @using (Html.BeginForm("YeniKalem", "Fatura", FormMethod.Post))
+    {
 
+        @Html.LabelFor(x => x.Aciklama)
+        @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
+        <br />
+        @Html.LabelFor(x => x.Miktar)
+        @Html.TextBoxFor(x => x.Miktar, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(x => x.Miktar, "", new { @class = "text-danger" })
+        <br />
+        @Html.LabelFor(x => x.BirimFiyat)
+        @Html.TextBoxFor(x => x.BirimFiyat, new { @class = "fiyat form-control" })
+        @Html.ValidationMessageFor(x => x.BirimFiyat, "", new { @class = "text-danger" })
+        <br />
+        @Html.LabelFor(x => x.FaturaId)
+        @Html.TextBoxFor(x => x.FaturaId, new { @class = "form-control", @Value = Convert.ToString(@ViewBag.faturaId), @readonly = Convert.ToString(@ViewBag.faturaId) })
+        <br />
+        <button class="btn btn-success" id="submitButton">Kaydet</button>
+    }
+
+
+<script>
+    $(document).ready(function () {
+        $('#submitButton').click(function () {
+            var fiyatValue = $('.fiyat').val();
+
+            // Fiyat değerini doğru formatta kontrol et
+            if (!isValidPriceFormat(fiyatValue) && fiyatValue !== "") {
+                alert('Geçersiz fiyat formatı. Sadece sayılar ve virgül kullanabilirsiniz.');
+                return false; // Formun gönderilmesini engeller
+            }
+        });
+
+        function isValidPriceFormat(price) {
+
+            var regex = /^[0-9]+([,][0-9]{1,2})?$/;
+
+            return regex.test(price);
+        }
+    });
+</script>

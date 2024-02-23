@@ -73,15 +73,29 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             }
         }
 
+        Context context = new Context();
         public ActionResult KategoriyeGoreUrunler()
         {
-            using (Context context = new Context())
-            {
-                KategeoriyeGoreUrunModelClass modelClass = new KategeoriyeGoreUrunModelClass();
-                modelClass.Kategoriler = new SelectList(context.Kategoris, "KategoriId", "KategoriAd");
-                modelClass.Urunler = new SelectList(context.Uruns, "UrunId", "UrunAd");
-                return View(modelClass);
-            }
+            KategeoriyeGoreUrunModelClass modelClass = new KategeoriyeGoreUrunModelClass();
+            modelClass.Kategoriler = new SelectList(context.Kategoris, "KategoriId", "KategoriAd");
+            modelClass.Urunler = new SelectList(context.Uruns, "UrunId", "UrunAd"); 
+            return View(modelClass);
+        }
+
+        [HttpPost]
+        public JsonResult UrunGetir(int katId)
+        {
+            var urunListesi = (from x in context.Uruns
+                               join y in context.Kategoris
+                               on x.Kategori.KategoriId equals y.KategoriId
+                               where x.Kategori.KategoriId == katId
+                               select new
+                               {
+                                    Text = x.UrunAd,
+                                    Value = x.UrunId.ToString()
+                               }).ToList();
+
+            return Json(urunListesi, JsonRequestBehavior.DenyGet); 
         }
     }
 }

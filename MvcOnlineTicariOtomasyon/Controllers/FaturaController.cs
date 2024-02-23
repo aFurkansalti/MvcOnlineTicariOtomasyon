@@ -111,8 +111,12 @@ namespace MvcOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult YeniKalem(FaturaKalem faturaKalem)
         {
-            faturaKalem.Tutar = faturaKalem.Miktar * faturaKalem.BirimFiyat;
+            if (!ModelState.IsValid)
+            {
+                return View("YeniKalem");
+            }
 
+            faturaKalem.Tutar = faturaKalem.Miktar * faturaKalem.BirimFiyat;
             context.FaturaKalems.Add(faturaKalem);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -135,6 +139,48 @@ namespace MvcOnlineTicariOtomasyon.Controllers
                                                       Value = String.Format("{0} {1}", x.CariAd, x.CariSoyad)
                                                   }).ToList();
             ViewBag.teslimAlanlar = teslimAlanlar;
+        }
+
+        public ActionResult Dinamik()
+        {
+            FaturaAndFaturaKalemModelClass modelClass = new FaturaAndFaturaKalemModelClass();
+            modelClass.Faturalar = context.Faturalars.ToList();
+            modelClass.FaturaKalemler = context.FaturaKalems.ToList();
+            return View(modelClass);
+        }
+
+        public ActionResult FaturaKaydet(string FaturaSeriNo,
+                                         string FaturaSiraNo,
+                                         DateTime Tarih,
+                                         string VergiDairesi,
+                                         string Saat,
+                                         string TeslimEden,
+                                         string TeslimAalan,
+                                         string Toplam,
+                                         FaturaKalem[] Kalemler)
+        {
+            Faturalar faturalar = new Faturalar();
+            faturalar.FaturaSeriNo = FaturaSeriNo;
+            faturalar.FaturaSiraNo = FaturaSiraNo;
+            faturalar.Tarih = Tarih;
+            faturalar.VergiDairesi = VergiDairesi;
+            faturalar.Saat = Saat;  
+            faturalar.TeslimEden = TeslimEden;
+            faturalar.TeslimAalan = TeslimAalan;
+            faturalar.Toplam = decimal.Parse(Toplam);
+            context.Faturalars.Add(faturalar);
+            foreach (var kalem in Kalemler)
+            {
+                FaturaKalem faturaKalem = new FaturaKalem();
+                faturaKalem.Aciklama = kalem.Aciklama;
+                faturaKalem.BirimFiyat = kalem.BirimFiyat;
+                faturaKalem.FaturaId = kalem.FaturaId;
+                faturaKalem.Miktar = kalem.Miktar;
+                faturaKalem.Tutar = kalem.Tutar;
+                context.FaturaKalems.Add(faturaKalem);
+            }
+            context.SaveChanges();
+            return Json("İşlem Başarılı", JsonRequestBehavior.AllowGet);
         }
     }
 }
